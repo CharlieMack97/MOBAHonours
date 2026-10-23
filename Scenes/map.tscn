@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://t5gaqvoyqdbh"]
+
+[ext_resource type="Script" uid="uid://ctyflq7nimlyn" path="res://Scripts/multiplayer_spawner.gd" id="1_26yhd"]
+[ext_resource type="PackedScene" uid="uid://beddmcj8k5r5h" path="res://Scenes/Character.tscn" id="2_p3ir5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8vysu"]
+size = Vector3(1, 0.001, 1)
+
+[node name="Node3D" type="Node3D" unique_id=933416149]
+
+[node name="Spawner" type="Node3D" parent="." unique_id=1278634113]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.615016, 0)
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=549471874]
+_spawnable_scenes = PackedStringArray("uid://beddmcj8k5r5h")
+spawn_path = NodePath("../Spawner")
+script = ExtResource("1_26yhd")
+networkPlayer = ExtResource("2_p3ir5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=385932718]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, -15.392901, 0)
+shape = SubResource("BoxShape3D_8vysu")
+debug_color = Color(0.92617834, 4.2162537e-05, 0.67534864, 0.41960785)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CollisionShape3D" unique_id=1415258878]
+visible = false
+
+[node name="Area3D" type="Area3D" parent="." unique_id=954208896]

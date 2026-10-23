@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://c0vt3c7m7qhuw"]
+
+[ext_resource type="Script" uid="uid://b13hj0hi1lkwc" path="res://Scripts/main_menu_ui.gd" id="1_ugr05"]
+
+[node name="MainMenuUI" type="Control" unique_id=89462158 groups=["MainMenu"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ugr05")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1359127970]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=66363274]
+layout_mode = 2
+
+[node name="StartServer" type="Button" parent="CenterContainer/VBoxContainer" unique_id=685672526]
+layout_mode = 2
+text = "Start Server"
+
+[node name="StartClient" type="Button" parent="CenterContainer/VBoxContainer" unique_id=630987527]
+layout_mode = 2
+text = "Start Client"
+
+[node name="Button3" type="Button" parent="CenterContainer/VBoxContainer" unique_id=153245262]
+layout_mode = 2
+text = "TBD
+"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/StartServer" to="." method="_on_start_server_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/StartClient" to="." method="_on_start_client_pressed"]

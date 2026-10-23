@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://beddmcj8k5r5h"]
+
+[ext_resource type="Script" uid="uid://cuepteywjy13h" path="res://Scripts/CharacterMovement.gd" id="1_0y7nr"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_jo2ib"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:scale")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8vysu"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=1194078696]
+disable_mode = 2
+safe_margin = 0.076
+script = ExtResource("1_0y7nr")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="." unique_id=174366166]
+transform = Transform3D(1, 0, 0, 0, 2.27, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1915612773]
+replication_config = SubResource("SceneReplicationConfig_jo2ib")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1554523866]
+transform = Transform3D(0.9981348, 0.043468155, -0.042865414, 0, 0.702153, 0.71202606, 0.06104854, -0.710698, 0.7008434, 0.025, 3.265, 2.61)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1277783774]
+shape = SubResource("CapsuleShape3D_8vysu")

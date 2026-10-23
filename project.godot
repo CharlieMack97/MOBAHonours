@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="MOBA-Honours"
+run/main_scene="uid://c0vt3c7m7qhuw"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+MultiplayerNetwork="*uid://dfrx1gkkmbchi"
 
 [display]
 
