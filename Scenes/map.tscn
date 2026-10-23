@@ -4,8 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://beddmcj8k5r5h" path="res://Scenes/networkPlayer.tscn" id="2_p3ir5"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_8vysu"]
-vertices = PackedVector3Array(-0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5)
+vertices = PackedVector3Array(-3.360246, -0.72768927, -3.6357193, -3.360246, -0.72768927, 3.6142807, 3.389754, -0.72768927, 3.6142807, 3.389754, -0.72768927, -3.6357193)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+geometry_parsed_geometry_type = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_26yhd"]
+albedo_color = Color(0.27116972, 0.4753515, 0.048359305, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_8vysu"]
 
@@ -22,7 +26,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8787403, 0)
 navigation_mesh = SubResource("NavigationMesh_8vysu")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D" unique_id=2039301908]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2276893, 0)
+transform = Transform3D(3.860246, 0, 0, 0, 1, 0, 0, 0, 4.1357193, 0, -1.2276893, 0)
+material_override = SubResource("StandardMaterial3D_26yhd")
 mesh = SubResource("PlaneMesh_8vysu")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=549471874]
