@@ -3,6 +3,11 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+func _ready() -> void:
+	if multiplayer.get_unique_id() == name.to_int():
+		$PlayerCamera.make_current()
+		
+	
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
 	
