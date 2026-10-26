@@ -17,7 +17,7 @@ func _ready() -> void:
 	#add_vertex(start)
 	#add_vertex(end)
 	#end()
-@rpc
+@rpc("any_peer")
 func shootMissile(direction : Vector3) -> void:
 	var _projectile = projectile.instantiate()
 	_projectile.projectileDirection = direction
