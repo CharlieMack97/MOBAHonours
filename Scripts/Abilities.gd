@@ -18,10 +18,10 @@ func _ready() -> void:
 	#add_vertex(end)
 	#end()
 @rpc
-func shootMissile(direction) -> void:
+func shootMissile(direction : Vector3) -> void:
 	var _projectile = projectile.instantiate()
 	_projectile.projectileDirection = direction
-	
+	add_child(_projectile)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

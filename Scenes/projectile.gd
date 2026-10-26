@@ -7,7 +7,15 @@ extends Node3D
 @rpc
 func _physics_process(delta: float) -> void:
 	if projectileDirection:
-		projectileMesh.position += projectileSpeed * projectileDirection * delta 
+		projectileMesh.position += projectileSpeed * projectileDirection * delta
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func _on_body_entered(body: Node3D) -> void:
+	if body.is_in_group("Player") :
+		queue_free()
+	if body.is_in_group("Terrain") :
+		queue_free()

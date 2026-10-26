@@ -19,7 +19,7 @@ func _ready() -> void:
 	
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
-	
+@rpc
 func _input(event):
 	if event.is_action_pressed("ui_move_click"):
 		var mousePos = event.position
@@ -47,7 +47,7 @@ func _input(event):
 		var result = spaceState.intersect_ray(query)
 		
 		if result.has("position"):
-			abilities.shootMissile(result)
+			abilities.shootMissile(result.position)
 		
 
 func _physics_process(delta: float) -> void:
