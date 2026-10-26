@@ -4,31 +4,42 @@
 [ext_resource type="PackedScene" uid="uid://beddmcj8k5r5h" path="res://Scenes/networkPlayer.tscn" id="2_p3ir5"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_8vysu"]
-vertices = PackedVector3Array(-3.360246, -0.72768927, -3.6357193, -3.360246, -0.72768927, 3.6142807, 3.389754, -0.72768927, 3.6142807, 3.389754, -0.72768927, -3.6357193)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+vertices = PackedVector3Array(-5, 0.5, -7.75, -3, 0.5, -8, -3, 0.5, -12, -12, 0.5, -5.25, -5, 0.5, -5.25, -12, 0.5, -12, -0.75, 0.5, -5, -1.25, 0.5, -4.75, 0, 0.5, -3, -0.75, 0.5, -7.75, 6.25, 0.5, -8, 6.25, 0.5, -12, 7.25, 0.5, -7.5, 8.25, 0.5, -5.75, 12, 0.5, -5.75, 12, 0.5, -12, -4, 2, -7, -4, 2, -5.75, -1.75, 2, -5.75, -1.75, 2, -7, 0.75, 2, -2.25, 0.75, 2, -1.75, 1.75, 2, -1.25, 7, 2, -5.75, 6, 2, -6.75, 7.75, 0.5, -4.75, 7.5, 0.5, 0.75, 7.75, 0.5, 2.5, 12, 0.5, 2.5, 1, 0.5, 0, 3.75, 0.5, 4, 3.75, 0.5, 0.75, 2, 0.5, 0, -1.25, 0.5, 5, -0.75, 0.5, 5.5, 0.25, 0.5, -0.75, -0.5, 0.5, -1.5, -4.75, 0.5, -4.75, -4.75, 0.5, 5, -12, 0.5, 5.5, -5, 0.5, 5.5, 4.5, 2, 1.75, 4.5, 2, 3, 6.75, 2, 3, 6.75, 2, 1.75, -0.75, 0.5, 8, -2.5, 0.5, 8.25, -2.25, 0.5, 12, 7.5, 0.5, 4, 12, 0.5, 12, -5, 0.5, 8, -12, 0.5, 12, -4, 2, 6, -4, 2, 7.25, -1.75, 2, 7.25, -1.75, 2, 6)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(2, 0, 5), PackedInt32Array(5, 0, 3), PackedInt32Array(8, 7, 6), PackedInt32Array(6, 9, 8), PackedInt32Array(8, 9, 10), PackedInt32Array(1, 2, 9), PackedInt32Array(9, 2, 10), PackedInt32Array(10, 2, 11), PackedInt32Array(12, 10, 11), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(15, 12, 11), PackedInt32Array(19, 18, 16), PackedInt32Array(16, 18, 17), PackedInt32Array(21, 20, 22), PackedInt32Array(22, 20, 24), PackedInt32Array(22, 24, 23), PackedInt32Array(13, 14, 25), PackedInt32Array(25, 14, 26), PackedInt32Array(26, 14, 27), PackedInt32Array(27, 14, 28), PackedInt32Array(32, 31, 29), PackedInt32Array(29, 31, 30), PackedInt32Array(34, 33, 30), PackedInt32Array(30, 33, 29), PackedInt32Array(29, 33, 35), PackedInt32Array(31, 32, 26), PackedInt32Array(26, 32, 25), PackedInt32Array(8, 36, 7), PackedInt32Array(7, 36, 37), PackedInt32Array(35, 33, 38), PackedInt32Array(36, 35, 37), PackedInt32Array(37, 35, 38), PackedInt32Array(37, 38, 39), PackedInt32Array(37, 39, 3), PackedInt32Array(38, 40, 39), PackedInt32Array(3, 4, 37), PackedInt32Array(44, 43, 41), PackedInt32Array(41, 43, 42), PackedInt32Array(47, 46, 45), PackedInt32Array(48, 27, 28), PackedInt32Array(34, 30, 45), PackedInt32Array(45, 30, 48), PackedInt32Array(28, 49, 48), PackedInt32Array(48, 49, 45), PackedInt32Array(45, 49, 47), PackedInt32Array(47, 50, 46), PackedInt32Array(39, 40, 50), PackedInt32Array(39, 50, 51), PackedInt32Array(51, 50, 47), PackedInt32Array(55, 54, 52), PackedInt32Array(52, 54, 53)]
 geometry_parsed_geometry_type = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_26yhd"]
-albedo_color = Color(0.27116972, 0.4753515, 0.048359305, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s0271"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_8vysu"]
+[sub_resource type="Sky" id="Sky_w07sw"]
+sky_material = SubResource("ProceduralSkyMaterial_s0271")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_8vysu"]
-size = Vector3(1, 0.001, 1)
+[sub_resource type="Environment" id="Environment_8vysu"]
+background_mode = 2
+sky = SubResource("Sky_w07sw")
+ambient_light_color = Color(0.97320753, 0.95886475, 0.9821678, 1)
 
-[node name="Node3D" type="Node3D" unique_id=933416149]
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_qi0go"]
 
-[node name="Spawner" type="Node3D" parent="." unique_id=1278634113]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.646544, 0)
+[sub_resource type="Compositor" id="Compositor_565ug"]
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1503432530]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w07sw"]
+albedo_color = Color(0.11889591, 0.34710753, 0, 1)
+metallic_specular = 0.39
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" unique_id=1503432530]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8787403, 0)
 navigation_mesh = SubResource("NavigationMesh_8vysu")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D" unique_id=2039301908]
-transform = Transform3D(3.860246, 0, 0, 0, 1, 0, 0, 0, 4.1357193, 0, -1.2276893, 0)
-material_override = SubResource("StandardMaterial3D_26yhd")
-mesh = SubResource("PlaneMesh_8vysu")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2129147573]
+environment = SubResource("Environment_8vysu")
+camera_attributes = SubResource("CameraAttributesPractical_qi0go")
+compositor = SubResource("Compositor_565ug")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1415258878]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(25, 1, 25)
+material = SubResource("StandardMaterial3D_w07sw")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=549471874]
 _spawnable_scenes = PackedStringArray("uid://beddmcj8k5r5h")
@@ -36,14 +47,25 @@ spawn_path = NodePath("../Spawner")
 script = ExtResource("1_26yhd")
 networkPlayer = ExtResource("2_p3ir5")
 
-[node name="Area3D" type="Area3D" parent="." unique_id=954208896]
+[node name="Spawner" type="Node3D" parent="." unique_id=1278634113]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=385932718]
-transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, -15.392901, 0)
-shape = SubResource("BoxShape3D_8vysu")
-debug_color = Color(0.92617834, 4.2162537e-05, 0.67534864, 0.41960785)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1571901938]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.471177, 0)
+light_energy = 2.283
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Area3D/CollisionShape3D" unique_id=1415258878]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.059570313, 0.6968101)
-use_collision = true
-size = Vector3(1, 1.1191406, 1)
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=510041187]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.65584, 0.61859417, 2.4426842)
+size = Vector3(3, 2, 2)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=246476895]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.836341, 0.61859417, 6.7262073)
+size = Vector3(3, 2, 2)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="." unique_id=1900409048]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.836341, 0.61859417, -6.414079)
+size = Vector3(3, 2, 2)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="." unique_id=258730194]
+transform = Transform3D(2.048463, 0, 0.6370345, 0, 1, 0, -1.7281587, 0, 0.7551052, 3.856104, 0.61859417, -3.9180455)
+size = Vector3(3, 2, 2)
