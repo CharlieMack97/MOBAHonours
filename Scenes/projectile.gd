@@ -2,6 +2,7 @@ extends Node3D
 
 @export var projectileSpeed : float = 20
 @export var projectileDirection : Vector3 = Vector3(0,0,0)
+@export var projectilesSpawn : Vector3
 @onready var projectileMesh = $MeshInstance3D
 # Called when the node enters the scene tree for the first time.
 @rpc

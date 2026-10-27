@@ -47,7 +47,8 @@ func _input(event):
 		var result = spaceState.intersect_ray(query)
 		
 		if result.has("position"):
-			abilities.shootMissile(result.position)
+			var spawnLocation = global_position
+			abilities.requestMissile.rpc_id(1,result.position,spawnLocation)
 		
 
 func _physics_process(delta: float) -> void:

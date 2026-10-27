@@ -7,20 +7,10 @@ data = PackedVector3Array(0, 1, 0, 0, 1, 0, 0, 0.9924, -0.086799994, 0, 1, 0, -0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_8vysu"]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_lal66"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath(".:rotation")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-properties/2/path = NodePath(".:scale")
-properties/2/spawn = true
-properties/2/replication_mode = 1
-
 [node name="Projectile" type="Area3D" unique_id=467706925 groups=["Projectile"]]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 script = ExtResource("1_lal66")
+projectileSpeed = 2.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=763481863 groups=["Projectile"]]
 transform = Transform3D(-4.371138e-08, 0.9999999, 0, -0.9999999, -4.371138e-08, 0, 0, 0, 1, 0, 0, 0)
@@ -29,8 +19,5 @@ shape = SubResource("ConcavePolygonShape3D_8cioo")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1296840603 groups=["Projectile"]]
 transform = Transform3D(-4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_8vysu")
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=969890540]
-replication_config = SubResource("SceneReplicationConfig_lal66")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -17,11 +17,18 @@ func _ready() -> void:
 	#add_vertex(start)
 	#add_vertex(end)
 	#end()
-@rpc("any_peer")
-func shootMissile(direction : Vector3) -> void:
+@rpc("any_peer", "call_local")
+func requestMissile(direction : Vector3,spawnLoation : Vector3) -> void:
+	if multiplayer.is_server():
+		shootMissile.rpc(direction, spawnLoation)
+@rpc("any_peer", "call_local")
+func shootMissile(direction : Vector3,spawnLoation : Vector3) -> void:
 	var _projectile = projectile.instantiate()
-	_projectile.projectileDirection = direction
-	add_child(_projectile)
+	var flat_target = Vector3(direction.x, spawnLoation.y, direction.z)
+	_projectile.position = spawnLoation
+	_projectile.look_at_from_position(flat_target, Vector3.UP)
+	_projectile.projectileDirection = Vector3 (direction.x,spawnLoation.y,direction.z)
+	get_tree().current_scene.add_child(_projectile)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

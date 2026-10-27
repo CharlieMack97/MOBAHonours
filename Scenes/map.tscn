@@ -26,46 +26,46 @@ ambient_light_color = Color(0.97320753, 0.95886475, 0.9821678, 1)
 albedo_color = Color(0.11889591, 0.34710753, 0, 1)
 metallic_specular = 0.39
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" unique_id=1503432530]
+[node name="NavigationRegion3D" type="NavigationRegion3D" unique_id=1503432530 groups=["Terrain"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8787403, 0)
 navigation_mesh = SubResource("NavigationMesh_8vysu")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2129147573]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2129147573 groups=["Terrain"]]
 environment = SubResource("Environment_8vysu")
 camera_attributes = SubResource("CameraAttributesPractical_qi0go")
 compositor = SubResource("Compositor_565ug")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1415258878]
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1415258878 groups=["Terrain"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 use_collision = true
 size = Vector3(25, 1, 25)
 material = SubResource("StandardMaterial3D_w07sw")
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=549471874]
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=549471874 groups=["Terrain"]]
 _spawnable_scenes = PackedStringArray("uid://beddmcj8k5r5h")
 spawn_path = NodePath("../Spawner")
 script = ExtResource("1_26yhd")
 networkPlayer = ExtResource("2_p3ir5")
 
-[node name="Spawner" type="Node3D" parent="." unique_id=1278634113]
+[node name="Spawner" type="Node3D" parent="." unique_id=1278634113 groups=["Terrain"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1571901938]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1571901938 groups=["Terrain"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.471177, 0)
 light_energy = 2.283
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=510041187]
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=510041187 groups=["Terrain"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.65584, 0.61859417, 2.4426842)
 size = Vector3(3, 2, 2)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=246476895]
+[node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=246476895 groups=["Terrain"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.836341, 0.61859417, 6.7262073)
 size = Vector3(3, 2, 2)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="." unique_id=1900409048]
+[node name="CSGBox3D4" type="CSGBox3D" parent="." unique_id=1900409048 groups=["Terrain"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.836341, 0.61859417, -6.414079)
 size = Vector3(3, 2, 2)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="." unique_id=258730194]
+[node name="CSGBox3D5" type="CSGBox3D" parent="." unique_id=258730194 groups=["Terrain"]]
 transform = Transform3D(2.048463, 0, 0.6370345, 0, 1, 0, -1.7281587, 0, 0.7551052, 3.856104, 0.61859417, -3.9180455)
 size = Vector3(3, 2, 2)
