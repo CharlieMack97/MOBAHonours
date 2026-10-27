@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://t5gaqvoyqdbh"]
 
-[ext_resource type="Script" uid="uid://ctyflq7nimlyn" path="res://Scripts/multiplayer_spawner.gd" id="1_26yhd"]
+[ext_resource type="Script" uid="uid://ctyflq7nimlyn" path="res://Scripts/MultiplayerSpawner.gd" id="1_26yhd"]
 [ext_resource type="PackedScene" uid="uid://beddmcj8k5r5h" path="res://Scenes/networkPlayer.tscn" id="2_p3ir5"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_8vysu"]

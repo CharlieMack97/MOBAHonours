@@ -8,7 +8,8 @@ extends Node3D
 @rpc
 func _physics_process(delta: float) -> void:
 	if projectileDirection:
-		projectileMesh.position += projectileSpeed * projectileDirection * delta
+		var direction = projectileMesh.position - projectileDirection
+		projectileMesh.position += projectileSpeed * direction * delta
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
