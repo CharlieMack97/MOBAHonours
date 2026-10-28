@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://hglrduwxhuv8"]
+
+[ext_resource type="Script" uid="uid://d3u68ohwvd06d" path="res://Scripts/AutoAttackProjectile.gd" id="1_xw45t"]
+
+[node name="AutoAttackProjectile" type="Node3D" unique_id=404501361]
+script = ExtResource("1_xw45t")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="." unique_id=725597468]

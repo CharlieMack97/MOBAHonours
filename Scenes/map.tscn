@@ -27,7 +27,6 @@ albedo_color = Color(0.11889591, 0.34710753, 0, 1)
 metallic_specular = 0.39
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" unique_id=1503432530 groups=["Terrain"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8787403, 0)
 navigation_mesh = SubResource("NavigationMesh_8vysu")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2129147573 groups=["Terrain"]]

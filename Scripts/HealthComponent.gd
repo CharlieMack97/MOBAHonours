@@ -15,7 +15,7 @@ func _ready() -> void:
 	
 # Called when the node enters the scene tree for the first time.
 func _update() -> void:
-	_takeDamage(3)
+	pass
 @rpc
 func _takeDamage(damage) -> void:
 	playerHealth -= damage

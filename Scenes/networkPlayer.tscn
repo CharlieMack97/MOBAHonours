@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cuepteywjy13h" path="res://Scripts/CharacterMovement.gd" id="1_0y7nr"]
 [ext_resource type="Script" uid="uid://bes4aerafuqdr" path="res://Scripts/Abilities.gd" id="2_yk7fa"]
 [ext_resource type="PackedScene" uid="uid://dsd338n1tkrp0" path="res://Scenes/Projectile.tscn" id="3_mannh"]
+[ext_resource type="Script" uid="uid://dkbu7holbv4un" path="res://Scripts/HealthComponent.gd" id="4_q6ql1"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_jo2ib"]
 properties/0/path = NodePath(".:position")
@@ -40,6 +41,7 @@ fov = 99.5
 size = 14.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1330215458 groups=["Player"]]
+unique_name_in_owner = true
 mesh = SubResource("CapsuleMesh_8vysu")
 surface_material_override/0 = SubResource("StandardMaterial3D_565ug")
 
@@ -54,3 +56,7 @@ debug_path_custom_color = Color(0.1254902, 1, 1, 1)
 script = ExtResource("2_yk7fa")
 projectile = ExtResource("3_mannh")
 metadata/_custom_type_script = "uid://bes4aerafuqdr"
+
+[node name="HealthCompoenent" type="Node" parent="." unique_id=214204864]
+script = ExtResource("4_q6ql1")
+metadata/_custom_type_script = "uid://dkbu7holbv4un"
