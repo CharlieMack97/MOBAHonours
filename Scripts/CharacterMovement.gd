@@ -42,6 +42,9 @@ func _input(event):
 		if result.has("position"):
 			navAgent.set_target_position(result.position)
 			isMoving = true
+			print("Location in game:", $MeshInstance3D.global_position)
+			var lookAtTarget = Vector3(result.position.x, global_position.y,result.position.z)
+			%MeshInstance3D.look_at(lookAtTarget,Vector3.UP)
 	if event.is_action_pressed("Ability1"):
 		var mousePos = get_viewport().get_mouse_position()
 		var from = cam.project_ray_origin((mousePos))
@@ -54,8 +57,15 @@ func _input(event):
 		var result = spaceState.intersect_ray(query)
 		
 		if result.has("position"):
+			
 			var spawnLocation = $MeshInstance3D.global_position
-			abilities.requestMissile.rpc_id(1,result.position,spawnLocation)
+			var hitPosition = result.position 
+			print(" Spawn Location:",spawnLocation)
+			print("Direction : " , result.position)
+			var direction = (hitPosition - spawnLocation).normalized()
+			var shooterID = multiplayer.get_remote_sender_id()
+			abilities.requestMissile.rpc_id(1,direction,spawnLocation,shooterID)
+			
 	if event.is_action_pressed("AttackMove"):
 		var mousePos = get_viewport().get_mouse_position()
 		var from = cam.project_ray_origin((mousePos))
@@ -81,8 +91,8 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		#velocity.y = JUMP_VELOCITY
 	if navAgent.is_navigation_finished() :
 		velocity = Vector3.ZERO
 		return

@@ -26,7 +26,12 @@ ambient_light_color = Color(0.97320753, 0.95886475, 0.9821678, 1)
 albedo_color = Color(0.11889591, 0.34710753, 0, 1)
 metallic_specular = 0.39
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lal66"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qi0go"]
+
 [node name="NavigationRegion3D" type="NavigationRegion3D" unique_id=1503432530 groups=["Terrain"]]
+process_mode = 3
 navigation_mesh = SubResource("NavigationMesh_8vysu")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2129147573 groups=["Terrain"]]
@@ -37,6 +42,8 @@ compositor = SubResource("Compositor_565ug")
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1415258878 groups=["Terrain"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 use_collision = true
+collision_layer = 2
+collision_mask = 13
 size = Vector3(25, 1, 25)
 material = SubResource("StandardMaterial3D_w07sw")
 
@@ -47,24 +54,51 @@ script = ExtResource("1_26yhd")
 networkPlayer = ExtResource("2_p3ir5")
 
 [node name="Spawner" type="Node3D" parent="." unique_id=1278634113 groups=["Terrain"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 4.993311)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1571901938 groups=["Terrain"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.471177, 0)
+transform = Transform3D(0.6243454, 0.42214033, -0.6572597, 0, 0.8414019, 0.5404099, 0.7811484, -0.33740246, 0.5253254, 0, 4.471177, 0)
+light_color = Color(0.9979729, 0.9999997, 0.9056777, 1)
 light_energy = 2.283
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=510041187 groups=["Terrain"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.65584, 0.61859417, 2.4426842)
+use_collision = true
+collision_layer = 2
+collision_mask = 13
 size = Vector3(3, 2, 2)
+material = SubResource("StandardMaterial3D_lal66")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=246476895 groups=["Terrain"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.836341, 0.61859417, 6.7262073)
+use_collision = true
+collision_layer = 2
+collision_mask = 13
 size = Vector3(3, 2, 2)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="." unique_id=1900409048 groups=["Terrain"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.836341, 0.61859417, -6.414079)
+use_collision = true
+collision_layer = 2
+collision_mask = 13
 size = Vector3(3, 2, 2)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="." unique_id=258730194 groups=["Terrain"]]
+[node name="CSGBox3D5" type="CSGBox3D" parent="." unique_id=258730194 groups=["Player", "Terrain"]]
 transform = Transform3D(2.048463, 0, 0.6370345, 0, 1, 0, -1.7281587, 0, 0.7551052, 3.856104, 0.61859417, -3.9180455)
+use_collision = true
+collision_layer = 2
+collision_mask = 13
 size = Vector3(3, 2, 2)
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1437533430]
+transform = Transform3D(1.6310936, 0, 0, 0, 1.6015474, 0, 0, 0, 3.2852006, -8.158689, 0, 0)
+disable_mode = 2
+collision_layer = 2
+collision_mask = 9
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=83710832]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.56493807, 0)
+shape = SubResource("BoxShape3D_qi0go")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Area3D" unique_id=298349064]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014980793, 0.5674776, 0)

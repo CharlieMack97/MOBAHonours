@@ -18,17 +18,21 @@ func _ready() -> void:
 	#add_vertex(end)
 	#end()
 @rpc("any_peer", "call_local")
-func requestMissile(direction : Vector3,spawnLoation : Vector3) -> void:
+func requestMissile(direction : Vector3,spawnLoation : Vector3, shooterID : int) -> void:
 	if multiplayer.is_server():
-		shootMissile.rpc(direction, spawnLoation)
+		shootMissile.rpc(direction, spawnLoation, shooterID)
 @rpc("any_peer", "call_local")
-func shootMissile(direction : Vector3,spawnLoation : Vector3) -> void:
+func shootMissile(direction : Vector3,spawnLoation : , shooterID : int) -> void:
 	var _projectile = projectile.instantiate()
-	var flatTarget = Vector3(direction.x, spawnLoation.y, direction.z)
-	_projectile.position = spawnLoation
-	_projectile.look_at_from_position(flatTarget, Vector3.UP)
-	_projectile.projectileDirection = Vector3 (direction.x,spawnLoation.y,direction.z)
+	_projectile.set_multiplayer_authority(shooterID)
 	get_tree().current_scene.add_child(_projectile)
+	_projectile.global_position = spawnLoation
+	#_projectile.set_global_rotation_degrees(Vector3(0,90,0)) 
+	var flatTarget = spawnLoation + Vector3(direction.x, 0, direction.z)
+	_projectile.Shooter = shooterID
+	_projectile.look_at_from_position(spawnLoation,flatTarget, Vector3.UP)
+	_projectile.projectileDirection = Vector3 (direction.x,0,direction.z).normalized()
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
