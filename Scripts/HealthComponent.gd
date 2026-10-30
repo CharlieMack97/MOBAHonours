@@ -5,6 +5,9 @@ class_name HealthCompoenent extends Node
 @export var playerMana : float
 @export var playerManaRegen : float
 @export var playerHealthRegen : float
+const MAX_HEALTH : float = 100
+const MAX_MANA : float = 300
+const MAX_XP : float = 1000 
 
 func _ready() -> void:
 	playerHealth =100
@@ -16,7 +19,15 @@ func _ready() -> void:
 # Called when the node enters the scene tree for the first time.
 func _update() -> void:
 	pass
-@rpc
-func _takeDamage(damage) -> void:
+
+func takeDamage(damage) -> void:
 	playerHealth -= damage
+	syncHealth(playerHealth)
+	
+func syncHealth(health: float) ->void:
+	playerHealth = health
+	print("health updated: ", playerHealth)
+	
+	if playerHealth <0:
+		pass
 	
