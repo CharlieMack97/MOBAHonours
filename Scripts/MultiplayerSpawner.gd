@@ -8,14 +8,14 @@ var teams := {}
 func _ready() -> void:
 	spawn_function = createPlayer
 	multiplayer.peer_connected.connect(spawnPlayer)
-	multiplayer.peer_disconnected.disconnect(removePlayer)
+	multiplayer.peer_disconnected.connect(removePlayer)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func spawnPlayer(id:int)->void:
 	if !multiplayer.is_server() : return
 	var team := 0
 	if teams.values().count(0) <= teams.values().count(1) :
-		team = 0
+		team = 1
 	teams[id] = team
 	spawn({"id": id,"team":team , "pos":teamSpawns[team].global_position})
 func removePlayer(id:int)->void:
