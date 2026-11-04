@@ -35,7 +35,7 @@ func shootMissile(direction : Vector3,spawnLoation : , shooterID : int) -> void:
 	var projectiles = get_tree().current_scene.get_node("Projectiles")
 	projectiles.add_child(_projectile)
 	_projectile.global_position = spawnLoation
-	#_projectile.set_global_rotation_degrees(Vector3(0,90,0)) 
+	_projectile.set_global_rotation_degrees(Vector3(0,90,0)) 
 	var flatTarget = spawnLoation + Vector3(direction.x, 0, direction.z)
 	#_projectile.Shooter = shooterID
 	_projectile.look_at_from_position(spawnLoation,flatTarget, Vector3.UP)

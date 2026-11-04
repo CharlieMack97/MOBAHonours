@@ -2,10 +2,14 @@ extends CharacterBody3D
 @onready var navAgent : NavigationAgent3D = $NavigationAgent3D 
 @onready var cam : Camera3D = $PlayerCamera
 @onready var abilities : Abilities = $Abilities
-@onready var AutoAttack : AutoAttackProjectile = $
+@onready var AutoAttack : AutoAttackProjectile = $AutoAttackProjectile
+@onready var animatedSprite: AnimatedSprite3D = $AnimatedSprite3D
+@onready var healthComp : HealthCompoenent = $HealthCompoenent
+
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-
+const ATTACK_RANGE = 10
+const ATTACK_DAMAGE = 5
 
 var isMoving : bool = false
 var targetPoisiton : Vector3 
@@ -61,16 +65,19 @@ func _input(event):
 		if result.is_empty():
 			return
 		var hit : Node = result.collider 
+		var player : CharacterBody3D = hit as CharacterBody3D
 		if hit.is_in_group("Player"):
-			
-		
-
+			#var spawnLocation = $MeshInstance3D.global_position
+			var currentDistance = global_position.distance_to(hit.global_position)
+			if currentDistance <= ATTACK_RANGE : 
+				AutoAttack.autoAttack.rpc_id(1,player.get_path())
+	
 func _physics_process(delta: float) -> void:
 	if !is_multiplayer_authority(): return
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
+	
 	# Handle jump.
 	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		#velocity.y = JUMP_VELOCITY

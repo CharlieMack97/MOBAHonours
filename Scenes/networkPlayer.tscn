@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://bes4aerafuqdr" path="res://Scripts/Abilities.gd" id="2_yk7fa"]
 [ext_resource type="PackedScene" uid="uid://dsd338n1tkrp0" path="res://Scenes/Projectile.tscn" id="3_mannh"]
 [ext_resource type="Script" uid="uid://dkbu7holbv4un" path="res://Scripts/HealthComponent.gd" id="4_q6ql1"]
+[ext_resource type="Script" uid="uid://d3u68ohwvd06d" path="res://Scripts/AutoAttackProjectile.gd" id="6_n3lji"]
+[ext_resource type="Texture2D" uid="uid://du4nne3814ddx" path="res://Assets/UI/06.png" id="7_2dte7"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_jo2ib"]
 properties/0/path = NodePath(".:position")
@@ -28,6 +30,49 @@ albedo_texture = ExtResource("2_icota")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8isjg"]
 points = PackedVector3Array(-0.12520654, -0.532801, -0.4805069, 0.022783129, 0.4760704, 0.49888408, 0.16971254, 0.5591441, 0.46417162, 0.23105091, -0.8035912, 0.32045516, 0.40741014, 0.651043, -0.24352328, -0.4827893, 0.59484255, 0.082213186, -0.3628679, -0.68231165, 0.2896967, 0.46904355, -0.65452886, -0.06627126, -0.12744367, 0.8427015, -0.33810276, -0.39343542, -0.6839421, -0.24471663, 0.43825462, 0.62330925, 0.20084947, 0.0841477, 0.977454, 0.11479468, -0.06820232, -0.9764576, -0.12927033, 0.20054972, -0.56312895, -0.4514544, -0.18552664, 0.59545326, -0.4534751, -0.27336287, 0.59226835, 0.40775412, -0.0069364863, -0.47682306, 0.49966025, 0.37582088, -0.5886136, 0.31695515, 0.111579016, 0.5630594, -0.48117727, -0.41725034, 0.5278656, -0.27049688, -0.48454633, -0.59697217, -0.06650971, -0.27974695, 0.90856135, 0.05333608, -0.25019687, -0.8807117, 0.20531891, 0.263647, -0.90277094, -0.1273943, 0.29336792, 0.8715263, -0.15719566, 0.3734115, -0.5263189, -0.32824618, 0.4996626, 0.47664148, -0.0068885577, 0.053105574, 0.8750009, 0.32470253, -0.15454252, -0.5908538, 0.4658794, -0.09727988, -0.7823577, -0.39818847, -0.3876489, -0.49817133, 0.31564978, -0.30067965, -0.58799505, -0.38890144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fj5b"]
+atlas = ExtResource("7_2dte7")
+region = Rect2(192, 32, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g07ta"]
+atlas = ExtResource("7_2dte7")
+region = Rect2(144, 32, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tw1gc"]
+atlas = ExtResource("7_2dte7")
+region = Rect2(96, 32, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwpa3"]
+atlas = ExtResource("7_2dte7")
+region = Rect2(48, 32, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o21gq"]
+atlas = ExtResource("7_2dte7")
+region = Rect2(0, 32, 48, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qi0go"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5fj5b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g07ta")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tw1gc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xwpa3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o21gq")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=1194078696 groups=["Player"]]
 disable_mode = 2
@@ -64,3 +109,14 @@ metadata/_custom_type_script = "uid://bes4aerafuqdr"
 [node name="HealthCompoenent" type="Node" parent="." unique_id=214204864]
 script = ExtResource("4_q6ql1")
 metadata/_custom_type_script = "uid://dkbu7holbv4un"
+
+[node name="AutoAttackProjectile" type="Node" parent="." unique_id=1175113815]
+script = ExtResource("6_n3lji")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1142136032]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3776836, 0)
+pixel_size = 0.05
+billboard = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_qi0go")
+frame = 4
