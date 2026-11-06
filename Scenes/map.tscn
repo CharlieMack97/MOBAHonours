@@ -84,7 +84,7 @@ collision_layer = 2
 collision_mask = 13
 size = Vector3(3, 2, 2)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="." unique_id=258730194 groups=["Player", "Terrain"]]
+[node name="CSGBox3D5" type="CSGBox3D" parent="." unique_id=258730194 groups=["Terrain"]]
 transform = Transform3D(2.048463, 0, 0.6370345, 0, 1, 0, -1.7281587, 0, 0.7551052, 3.856104, 0.61859417, -3.9180455)
 use_collision = true
 collision_layer = 2
@@ -104,7 +104,7 @@ disable_mode = 2
 collision_layer = 2
 collision_mask = 9
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=83710832]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=83710832 groups=["Terrain"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.56493807, 0)
 shape = SubResource("BoxShape3D_qi0go")
 

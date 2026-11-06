@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dkbu7holbv4un" path="res://Scripts/HealthComponent.gd" id="4_q6ql1"]
 [ext_resource type="Script" uid="uid://d3u68ohwvd06d" path="res://Scripts/AutoAttackProjectile.gd" id="6_n3lji"]
 [ext_resource type="Texture2D" uid="uid://du4nne3814ddx" path="res://Assets/UI/06.png" id="7_2dte7"]
+[ext_resource type="PackedScene" uid="uid://hglrduwxhuv8" path="res://Scenes/AutoAttackProjectile.tscn" id="7_o21gq"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_jo2ib"]
 properties/0/path = NodePath(".:position")
@@ -112,6 +113,7 @@ metadata/_custom_type_script = "uid://dkbu7holbv4un"
 
 [node name="AutoAttackProjectile" type="Node" parent="." unique_id=1175113815]
 script = ExtResource("6_n3lji")
+projectile_scene = ExtResource("7_o21gq")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1142136032]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3776836, 0)

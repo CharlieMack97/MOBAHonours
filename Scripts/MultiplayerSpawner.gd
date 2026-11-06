@@ -2,7 +2,6 @@ extends MultiplayerSpawner
 
 @export var networkPlayer: PackedScene
 @export var teamSpawns : Array[Node3D]
-
 var teams := {}
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

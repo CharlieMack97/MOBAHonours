@@ -65,12 +65,15 @@ func _input(event):
 		if result.is_empty():
 			return
 		var hit : Node = result.collider 
+		
 		var player : CharacterBody3D = hit as CharacterBody3D
 		if hit.is_in_group("Player"):
 			#var spawnLocation = $MeshInstance3D.global_position
 			var currentDistance = global_position.distance_to(hit.global_position)
 			if currentDistance <= ATTACK_RANGE : 
-				AutoAttack.autoAttack.rpc_id(1,player.get_path())
+				AutoAttack.autoAttack.rpc_id(1,self.get_path(),player.get_path(),global_position)
+		else:
+			return
 	
 func _physics_process(delta: float) -> void:
 	if !is_multiplayer_authority(): return
