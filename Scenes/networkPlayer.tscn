@@ -5,10 +5,44 @@
 [ext_resource type="PackedScene" uid="uid://cxjgxwg3ylcoi" path="res://Assets/Characters/Barbarian.glb" id="2_xwpa3"]
 [ext_resource type="Script" uid="uid://bes4aerafuqdr" path="res://Scripts/Abilities.gd" id="2_yk7fa"]
 [ext_resource type="PackedScene" uid="uid://dsd338n1tkrp0" path="res://Scenes/Projectile.tscn" id="3_mannh"]
+[ext_resource type="Animation" uid="uid://r63d5gk1f5ur" path="res://Assets/Animation/Death_A.res" id="3_wib48"]
+[ext_resource type="Animation" uid="uid://duhvodkykmqi0" path="res://Assets/Animation/Death_A_Pose.res" id="4_mghrx"]
 [ext_resource type="Script" uid="uid://dkbu7holbv4un" path="res://Scripts/HealthComponent.gd" id="4_q6ql1"]
+[ext_resource type="Animation" uid="uid://dyfxit2y87dec" path="res://Assets/Animation/Death_B.res" id="5_dwd3q"]
+[ext_resource type="Animation" uid="uid://dpsxtbgfrvrh4" path="res://Assets/Animation/Death_B_Pose.res" id="6_h7c38"]
 [ext_resource type="Script" uid="uid://d3u68ohwvd06d" path="res://Scripts/AutoAttackProjectile.gd" id="6_n3lji"]
 [ext_resource type="Texture2D" uid="uid://du4nne3814ddx" path="res://Assets/UI/06.png" id="7_2dte7"]
+[ext_resource type="Animation" uid="uid://b7ike5jd4cp2d" path="res://Assets/Animation/Hit_A.res" id="7_ivh1p"]
 [ext_resource type="PackedScene" uid="uid://hglrduwxhuv8" path="res://Scenes/AutoAttackProjectile.tscn" id="7_o21gq"]
+[ext_resource type="Animation" uid="uid://by0dwr126gga4" path="res://Assets/Animation/Hit_B.res" id="8_e47ns"]
+[ext_resource type="Animation" uid="uid://bec66dreok1wg" path="res://Assets/Animation/Idle_A.res" id="9_8joph"]
+[ext_resource type="Animation" uid="uid://dok8ddpmjc2ei" path="res://Assets/Animation/Idle_B.res" id="10_bjocx"]
+[ext_resource type="Animation" uid="uid://df214w8wuogug" path="res://Assets/Animation/Interact.res" id="11_gsbuv"]
+[ext_resource type="Animation" uid="uid://dx4hiry75d1y" path="res://Assets/Animation/PickUp.res" id="12_3ru7b"]
+[ext_resource type="Animation" uid="uid://clp65muqyx5yt" path="res://Assets/Animation/Spawn_Air.res" id="13_xg3bj"]
+[ext_resource type="Animation" uid="uid://bnd48eqv33oec" path="res://Assets/Animation/Spawn_Ground.res" id="14_0ry7j"]
+[ext_resource type="Animation" uid="uid://buer57eqvty7s" path="res://Assets/Animation/T-Pose.res" id="15_1j8uo"]
+[ext_resource type="Animation" uid="uid://qxremv8rwpmm" path="res://Assets/Animation/Throw.res" id="16_onu1q"]
+[ext_resource type="Animation" uid="uid://u5tnkvs8eb7r" path="res://Assets/Animation/Use_Item.res" id="17_llqtg"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_afb7c"]
+_data = {
+&"Death_A": ExtResource("3_wib48"),
+&"Death_A_Pose": ExtResource("4_mghrx"),
+&"Death_B": ExtResource("5_dwd3q"),
+&"Death_B_Pose": ExtResource("6_h7c38"),
+&"Hit_A": ExtResource("7_ivh1p"),
+&"Hit_B": ExtResource("8_e47ns"),
+&"Idle_A": ExtResource("9_8joph"),
+&"Idle_B": ExtResource("10_bjocx"),
+&"Interact": ExtResource("11_gsbuv"),
+&"PickUp": ExtResource("12_3ru7b"),
+&"Spawn_Air": ExtResource("13_xg3bj"),
+&"Spawn_Ground": ExtResource("14_0ry7j"),
+&"T-Pose": ExtResource("15_1j8uo"),
+&"Throw": ExtResource("16_onu1q"),
+&"Use_Item": ExtResource("17_llqtg")
+}
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_jo2ib"]
 properties/0/path = NodePath(".:position")
@@ -82,6 +116,10 @@ safe_margin = 0.076
 script = ExtResource("1_0y7nr")
 
 [node name="Barbarian" parent="." unique_id=1279309134 instance=ExtResource("2_xwpa3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.955, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Barbarian" unique_id=1172234733]
+libraries/Player = SubResource("AnimationLibrary_afb7c")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1915612773 groups=["Player"]]
 replication_config = SubResource("SceneReplicationConfig_jo2ib")
@@ -95,6 +133,7 @@ size = 14.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1330215458 groups=["Player"]]
 unique_name_in_owner = true
+visible = false
 mesh = SubResource("CapsuleMesh_8vysu")
 surface_material_override/0 = SubResource("StandardMaterial3D_565ug")
 
