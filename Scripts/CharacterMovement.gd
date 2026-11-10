@@ -5,13 +5,17 @@ extends CharacterBody3D
 @onready var AutoAttack : AutoAttackProjectile = $AutoAttackProjectile
 @onready var animatedSprite: AnimatedSprite3D = $AnimatedSprite3D
 @onready var healthComp : HealthCompoenent = $HealthCompoenent
-
+@onready var Character : Node3D = $Barbarian
+@onready var animPlayer : AnimationPlayer = $Barbarian.find_child("AnimationPlayer", true, false)
+@onready var animTree : AnimationTree = $Barbarian.find_child("AnimationTree", true, false)
+@onready var stateMachine : AnimationNodeStateMachinePlayback
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const ATTACK_RANGE = 10
 const ATTACK_DAMAGE = 5
 
 var isMoving : bool = false
+var isAttacking : bool = false
 var targetPoisiton : Vector3 
 var attackTarget : Node3D 
 var attackCooldown : int 
@@ -24,10 +28,21 @@ func _ready() -> void:
 		set_process(false)
 		set_physics_process(false)
 		set_process_input(false)
-	
-	
+
+	stateMachine = animTree.get("parameters/StateMachine/playback")
+	print(stateMachine)
 	targetPoisiton = global_position
-	
+
+#Animations
+@rpc( "any_peer", "call_local", "reliable")
+func _playIdle() -> void:
+	stateMachine.travel("Idle")
+@rpc( "any_peer", "call_local", "reliable")
+func _playRun() -> void:
+	stateMachine.travel("Run")
+@rpc( "any_peer", "call_local", "reliable")
+func _playAttack() -> void:
+	stateMachine.travel("Attack")
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
 func _mouseToPosRaycast() -> Dictionary :
@@ -50,6 +65,8 @@ func _input(event):
 			print("Location in game:", $MeshInstance3D.global_position)
 			var lookAtTarget = Vector3(result.position.x, global_position.y,result.position.z)
 			%MeshInstance3D.look_at(lookAtTarget,Vector3.UP)
+			Character.look_at(lookAtTarget,Vector3.UP)
+			Character.rotation.y += PI
 	if event.is_action_pressed("Ability1"):
 		var result = _mouseToPosRaycast()
 		if result.has("position"):	
@@ -71,10 +88,23 @@ func _input(event):
 			#var spawnLocation = $MeshInstance3D.global_position
 			var currentDistance = global_position.distance_to(hit.global_position)
 			if currentDistance <= ATTACK_RANGE : 
+				var lookAtTarget = Vector3(result.position.x, global_position.y,result.position.z)
+				Character.look_at(lookAtTarget,Vector3.UP)
+				Character.rotation.y += PI
 				AutoAttack.autoAttack.rpc_id(1,self.get_path(),player.get_path(),global_position)
+				if isAttacking:
+					return
+				isAttacking = true
+				animPlayer.speed_scale = 3
+				_playAttack.rpc()
+				await get_tree().create_timer(0.4).timeout
+				isAttacking = false
+				
 		else:
 			return
-	
+
+#func _animFinished(animName)  -> void:
+	#if animName.is
 func _physics_process(delta: float) -> void:
 	if !is_multiplayer_authority(): return
 	# Add the gravity.
@@ -86,10 +116,15 @@ func _physics_process(delta: float) -> void:
 		#velocity.y = JUMP_VELOCITY
 	if navAgent.is_navigation_finished() :
 		velocity = Vector3.ZERO
-		return
+		
+		if !isAttacking :
+			_playIdle.rpc()
+		isMoving = false
 	if isMoving:
 		var destination = navAgent.get_next_path_position()
 		var localDesitnation = destination - global_position
 		var direction = localDesitnation.normalized()
 		velocity = direction * SPEED
+		if !isAttacking :
+			_playRun.rpc()
 		move_and_slide()
