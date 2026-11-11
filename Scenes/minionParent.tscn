@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://c5rwb6yc6d3ff"]
+
+[ext_resource type="Script" uid="uid://d18v2fvoqtom1" path="res://Scripts/minion.gd" id="1_apqf0"]
+[ext_resource type="PackedScene" uid="uid://bkgk68uwuis00" path="res://Scenes/Minion.tscn" id="1_t7m1n"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8vysu"]
+height = 1.276123
+
+[node name="Minion" type="CharacterBody3D" unique_id=345618599]
+script = ExtResource("1_apqf0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1516181549]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47937012, 0)
+shape = SubResource("CapsuleShape3D_8vysu")
+
+[node name="Knight" parent="." unique_id=715950576 instance=ExtResource("1_t7m1n")]
+script = null
+
+[editable path="Knight"]

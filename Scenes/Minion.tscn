@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://bkgk68uwuis00"]
+
+[ext_resource type="PackedScene" uid="uid://dwvgatvuafcvf" path="res://Assets/Characters/Knight.glb" id="1_0r81q"]
+[ext_resource type="Texture2D" uid="uid://du4nne3814ddx" path="res://Assets/UI/06.png" id="3_k2j7g"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0r81q"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_8vysu"]
+graph_offset = Vector2(-548, -121)
+nodes/output/position = Vector2(300, 160)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_0r81q")
+nodes/StateMachine/position = Vector2(-120, 100)
+node_connections = [&"output", 0, &"StateMachine"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_vwqaq"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:scale")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("AnimationPlayer:current_animation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fj5b"]
+atlas = ExtResource("3_k2j7g")
+region = Rect2(192, 32, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g07ta"]
+atlas = ExtResource("3_k2j7g")
+region = Rect2(144, 32, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tw1gc"]
+atlas = ExtResource("3_k2j7g")
+region = Rect2(96, 32, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwpa3"]
+atlas = ExtResource("3_k2j7g")
+region = Rect2(48, 32, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o21gq"]
+atlas = ExtResource("3_k2j7g")
+region = Rect2(0, 32, 48, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xg5gf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5fj5b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g07ta")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tw1gc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xwpa3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o21gq")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lx3og"]
+
+[node name="Knight" unique_id=715950576 instance=ExtResource("1_0r81q")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." index="1" unique_id=1113510735]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2" unique_id=1255856448]
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="3" unique_id=1701731418]
+tree_root = SubResource("AnimationNodeBlendTree_8vysu")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="4" unique_id=1859615774]
+replication_config = SubResource("SceneReplicationConfig_vwqaq")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." index="5" unique_id=1602956086]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.764701, 0)
+pixel_size = 0.05
+billboard = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_xg5gf")
+
+[node name="Area3D" type="Area3D" parent="." index="6" unique_id=1144228758]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=1454247484]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 1, 0)
+shape = SubResource("BoxShape3D_lx3og")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -13,7 +13,7 @@ func _ready() -> void:
 func spawnPlayer(id:int)->void:
 	if !multiplayer.is_server() : return
 	var team := 0
-	if teams.values().count(0) <= teams.values().count(1) :
+	if teams.values().count(0) > teams.values().count(1) :
 		team = 1
 	teams[id] = team
 	spawn({"id": id,"team":team , "pos":teamSpawns[team].global_position})

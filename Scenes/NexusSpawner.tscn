@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://do57jcw8120md"]
+
+[ext_resource type="Script" uid="uid://c2cysv83as4fl" path="res://Scripts/nexusSpawner.gd" id="1_bfnls"]
+
+[node name="Nexus" type="Node3D" unique_id=809270123]
+script = ExtResource("1_bfnls")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=532488241]
+use_collision = true
+collision_layer = 2
+collision_mask = 13
+size = Vector3(3, 1, 3)
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=1066976387]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6043892)
