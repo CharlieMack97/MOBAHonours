@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@onready var navAgent : NavigationAgent3D = $Knight/AnimationPlayer
+@onready var navAgent : NavigationAgent3D = $Knight/NavigationAgent3D
 @onready var animTree : AnimationTree = $Knight/AnimationTree
 var targetBase : Vector3
 var enemyTarget : Node3D

@@ -23,7 +23,7 @@ func _spawnMinionScene() ->void :
 	var minion = minionScene.instantiate()
 	get_tree().current_scene.add_child(minion)
 	minion.global_position = spawnPoint.global_position
-	minion.targetBase = enemyBase.global_position
+	minion.moveToPoint = enemyBase.global_position
 	
 	
 	

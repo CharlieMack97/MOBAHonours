@@ -43,7 +43,7 @@ _subresources={
 "animations": {
 "Death_A": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://Assets/Animation/Death_A.res",
+"save_to_file/fallback_path": "res://Assets/Animation/rig-GeneralAnims/Death_A.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://esyiee78r50f",
 "settings/loop_mode": 0,
@@ -2099,7 +2099,7 @@ _subresources={
 },
 "Death_A_Pose": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://Assets/Animation/Death_A_Pose.res",
+"save_to_file/fallback_path": "res://Assets/Animation/rig-GeneralAnims/Death_A_Pose.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://cikkh5xsfptpp",
 "settings/loop_mode": 0,
@@ -4155,7 +4155,7 @@ _subresources={
 },
 "Death_B": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://Assets/Animation/Death_B.res",
+"save_to_file/fallback_path": "res://Assets/Animation/rig-GeneralAnims/Death_B.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://dhgbx1yd8qg71",
 "settings/loop_mode": 0,
@@ -6211,7 +6211,7 @@ _subresources={
 },
 "Death_B_Pose": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://Assets/Animation/Death_B_Pose.res",
+"save_to_file/fallback_path": "res://Assets/Animation/rig-GeneralAnims/Death_B_Pose.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://c73eo8vr730wb",
 "settings/loop_mode": 0,
@@ -8267,7 +8267,7 @@ _subresources={
 },
 "Hit_A": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://Assets/Animation/Hit_A.res",
+"save_to_file/fallback_path": "res://Assets/Animation/rig-GeneralAnims/Hit_A.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://cl2hrn3e8led5",
 "settings/loop_mode": 0,
@@ -10323,7 +10323,7 @@ _subresources={
 },
 "Hit_B": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://Assets/Animation/Hit_B.res",
+"save_to_file/fallback_path": "res://Assets/Animation/rig-GeneralAnims/Hit_B.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://cojpb22k4ttup",
 "settings/loop_mode": 0,
@@ -12379,7 +12379,7 @@ _subresources={
 },
 "Idle_A": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://Assets/Animation/Idle_A.res",
+"save_to_file/fallback_path": "res://Assets/Animation/rig-GeneralAnims/Idle_A.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://bqtyooqw84ku2",
 "settings/loop_mode": 0,
@@ -14435,7 +14435,7 @@ _subresources={
 },
 "Idle_B": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://Assets/Animation/Idle_B.res",
+"save_to_file/fallback_path": "res://Assets/Animation/rig-GeneralAnims/Idle_B.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://c55recqgvh83w",
 "settings/loop_mode": 0,
@@ -16491,7 +16491,7 @@ _subresources={
 },
 "Interact": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://Assets/Animation/Interact.res",
+"save_to_file/fallback_path": "res://Assets/Animation/rig-GeneralAnims/Interact.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://bkv85aducdymc",
 "settings/loop_mode": 0,
@@ -18547,7 +18547,7 @@ _subresources={
 },
 "PickUp": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://Assets/Animation/PickUp.res",
+"save_to_file/fallback_path": "res://Assets/Animation/rig-GeneralAnims/PickUp.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://mkptg5ciqh4l",
 "settings/loop_mode": 0,
@@ -20603,7 +20603,7 @@ _subresources={
 },
 "Spawn_Air": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://Assets/Animation/Spawn_Air.res",
+"save_to_file/fallback_path": "res://Assets/Animation/rig-GeneralAnims/Spawn_Air.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://b24e6bp0uh38",
 "settings/loop_mode": 0,
@@ -22659,7 +22659,7 @@ _subresources={
 },
 "Spawn_Ground": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://Assets/Animation/Spawn_Ground.res",
+"save_to_file/fallback_path": "res://Assets/Animation/rig-GeneralAnims/Spawn_Ground.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://ojfakn808boi",
 "settings/loop_mode": 0,
@@ -24715,7 +24715,7 @@ _subresources={
 },
 "T-Pose": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://Assets/Animation/T-Pose.res",
+"save_to_file/fallback_path": "res://Assets/Animation/rig-GeneralAnims/T-Pose.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://cdv2s453dmnij",
 "settings/loop_mode": 0,
@@ -26771,7 +26771,7 @@ _subresources={
 },
 "Throw": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://Assets/Animation/Throw.res",
+"save_to_file/fallback_path": "res://Assets/Animation/rig-GeneralAnims/Throw.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://buwx0sd7oeqq3",
 "settings/loop_mode": 0,
@@ -28827,7 +28827,7 @@ _subresources={
 },
 "Use_Item": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://Assets/Animation/Use_Item.res",
+"save_to_file/fallback_path": "res://Assets/Animation/rig-GeneralAnims/Use_Item.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://b3cl5piiof3g4",
 "settings/loop_mode": 0,

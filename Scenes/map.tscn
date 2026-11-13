@@ -62,6 +62,10 @@ script = ExtResource("1_26yhd")
 networkPlayer = ExtResource("2_p3ir5")
 teamSpawns = [NodePath("../RedTeamSpawn"), NodePath("../BlueTeamSpawn")]
 
+[node name="MinionSpawner" type="MultiplayerSpawner" parent="." unique_id=37363810]
+_spawnable_scenes = PackedStringArray("uid://c5rwb6yc6d3ff")
+spawn_path = NodePath(".")
+
 [node name="Spawner" type="Node3D" parent="." unique_id=1278634113 groups=["Terrain"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 4.993311)
 

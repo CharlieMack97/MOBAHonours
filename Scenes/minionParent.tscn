@@ -6,6 +6,26 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8vysu"]
 height = 1.276123
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_apqf0"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:scale")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("Knight:rotation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("Knight:position")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath("Knight:scale")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+
 [node name="Minion" type="CharacterBody3D" unique_id=345618599]
 script = ExtResource("1_apqf0")
 
@@ -14,6 +34,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47937012, 0)
 shape = SubResource("CapsuleShape3D_8vysu")
 
 [node name="Knight" parent="." unique_id=715950576 instance=ExtResource("1_t7m1n")]
-script = null
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=804326235]
+replication_config = SubResource("SceneReplicationConfig_apqf0")
 
 [editable path="Knight"]

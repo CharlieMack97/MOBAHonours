@@ -8,7 +8,7 @@ func _ready() -> void:
 	if !is_multiplayer_authority():
 		return
 	for _nexus in nexus:
-		_nexus._spawnMinionScene()
+		_nexus.call_deferred("_spawnMinionScene")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
