@@ -12,20 +12,6 @@ nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_0r81q")
 nodes/StateMachine/position = Vector2(-120, 100)
 node_connections = [&"output", 0, &"StateMachine"]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_vwqaq"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath(".:rotation")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-properties/2/path = NodePath(".:scale")
-properties/2/spawn = true
-properties/2/replication_mode = 1
-properties/3/path = NodePath("AnimationPlayer:current_animation")
-properties/3/spawn = true
-properties/3/replication_mode = 1
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_5fj5b"]
 atlas = ExtResource("3_k2j7g")
 region = Rect2(192, 32, 48, 16)
@@ -81,17 +67,14 @@ transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 [node name="AnimationTree" type="AnimationTree" parent="." index="3" unique_id=1701731418]
 tree_root = SubResource("AnimationNodeBlendTree_8vysu")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="4" unique_id=1859615774]
-replication_config = SubResource("SceneReplicationConfig_vwqaq")
-
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." index="5" unique_id=1602956086]
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." index="4" unique_id=1602956086]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.764701, 0)
 pixel_size = 0.05
 billboard = 1
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_xg5gf")
 
-[node name="Area3D" type="Area3D" parent="." index="6" unique_id=1144228758]
+[node name="Area3D" type="Area3D" parent="." index="5" unique_id=1144228758]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=1454247484]
 transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 1, 0)

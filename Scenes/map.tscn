@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ctyflq7nimlyn" path="res://Scripts/MultiplayerSpawner.gd" id="1_26yhd"]
 [ext_resource type="Script" uid="uid://bbdvisovbnko3" path="res://Scenes/gameManager.gd" id="1_p3ir5"]
+[ext_resource type="Script" uid="uid://ciqs88sr4moot" path="res://Scenes/matchClock.gd" id="2_np2xp"]
 [ext_resource type="PackedScene" uid="uid://beddmcj8k5r5h" path="res://Scenes/networkPlayer.tscn" id="2_p3ir5"]
 [ext_resource type="PackedScene" uid="uid://do57jcw8120md" path="res://Scenes/NexusSpawner.tscn" id="4_myvm1"]
 [ext_resource type="PackedScene" uid="uid://c5rwb6yc6d3ff" path="res://Scenes/minionParent.tscn" id="5_q0mm3"]
@@ -41,6 +42,9 @@ navigation_mesh = SubResource("NavigationMesh_8vysu")
 transform = Transform3D(2.048463, 0, 0.6370345, 0, 1, 0, -1.7281587, 0, 0.7551052, 3.856104, 0.61859417, -3.9180455)
 script = ExtResource("1_p3ir5")
 nexus = [NodePath("../RedTeamSpawn/Nexus"), NodePath("../BlueTeamSpawn/Nexus")]
+
+[node name="MatchClock" type="Node" parent="GameManager" unique_id=1183326131]
+script = ExtResource("2_np2xp")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2129147573 groups=["Terrain"]]
 environment = SubResource("Environment_8vysu")
@@ -126,19 +130,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014980793, 0.5674776, 0)
 [node name="RedTeamSpawn" type="Marker3D" parent="." unique_id=1237466342]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 0, 37)
 
-[node name="Nexus" parent="RedTeamSpawn" unique_id=809270123 node_paths=PackedStringArray("spawnPoint", "enemyBase") instance=ExtResource("4_myvm1")]
+[node name="Nexus" parent="RedTeamSpawn" unique_id=809270123 node_paths=PackedStringArray("spawnPoint", "minionContainer", "enemyBase") instance=ExtResource("4_myvm1")]
 transform = Transform3D(-0.6312912, 0, 0.7755459, 0, 1, 0, -0.7755459, 0, -0.6312912, -2.3079197, 0.5029545, 1.8786373)
 spawnPoint = NodePath("Marker3D")
 minionScene = ExtResource("5_q0mm3")
+minionContainer = NodePath("../../MinionSpawner")
 enemyBase = NodePath("../../BlueTeamSpawn/Nexus")
 
 [node name="BlueTeamSpawn" type="Marker3D" parent="." unique_id=1723071291]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 0, -37)
 
-[node name="Nexus" parent="BlueTeamSpawn" unique_id=1063700414 node_paths=PackedStringArray("spawnPoint", "enemyBase") instance=ExtResource("4_myvm1")]
+[node name="Nexus" parent="BlueTeamSpawn" unique_id=1063700414 node_paths=PackedStringArray("spawnPoint", "minionContainer", "enemyBase") instance=ExtResource("4_myvm1")]
 transform = Transform3D(0.668174, 0, -0.744005, 0, 1, 0, 0.744005, 0, 0.668174, 4.277527, 0.6357236, -3.8237572)
 spawnPoint = NodePath("Marker3D")
 minionScene = ExtResource("5_q0mm3")
+minionContainer = NodePath("../../MinionSpawner")
 enemyBase = NodePath("../../RedTeamSpawn/Nexus")
 
 [editable path="RedTeamSpawn/Nexus"]
