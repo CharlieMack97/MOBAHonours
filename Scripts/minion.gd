@@ -4,6 +4,7 @@ extends CharacterBody3D
 @onready var animTree : AnimationTree = $Knight/AnimationTree
 @onready var aggroArea : Area3D = $Knight/Area3D
 @onready var teamRing : MeshInstance3D = $TeamRing
+@onready var anim : AnimatedSprite3D  = $Knight/AnimatedSprite3D
 var targetBase : Vector3
 var enemyTarget : Node3D
 var moveToPoint : Vector3 
@@ -31,6 +32,7 @@ func _ready() -> void:
 	print(name, " ready on team ", team, " | server: ", multiplayer.is_server())
 	_setTeamColour()
 	Health = MAX_HEALTH
+	updateHealthAnim.rpc(Health)
 func _setTeamColour() -> void:
 	var material := StandardMaterial3D.new()
 	material.albedo_color = TEAM_COLOURS[team]
@@ -109,5 +111,16 @@ func takeDamage(amount: float) -> void:
 		return
 	Health -= amount
 	print(name, " health: ", Health)
+	updateHealthAnim.rpc(Health)
 	if Health <= 0:
 		queue_free() 
+@rpc("any_peer", "call_local", "reliable")
+func updateHealthAnim(new_health: float) -> void:
+	Health = new_health
+	if not anim:
+		return
+	var healthPercentage = float(Health) / float(MAX_HEALTH)
+	var totalFrames = 5
+	var targetFrame = int(healthPercentage * (totalFrames - 1))
+	anim.frame = clampi(targetFrame, 0, totalFrames - 1)
+	print("Updated sprite frame on peer: ", multiplayer.get_unique_id(), " to frame: ", anim.frame)

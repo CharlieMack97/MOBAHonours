@@ -2,6 +2,8 @@ class_name Abilities extends Node
 
 @export var projectile : PackedScene
 @export var projectile_container: Node3D
+@onready var playerCharacter : CharacterBody3D = $".."
+var dashForce = 20
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -46,6 +48,10 @@ func shootMissile_rpc(direction : Vector3,spawnLoation : Vector3) -> void:
 	if sender == 0:
 		sender = multiplayer.get_unique_id()
 	shootMissile(direction,spawnLoation, sender)
+	
+@rpc("any_peer", "call_local")
+func dashRPC(direction : Vector3)-> void : 
+	playerCharacter.velocity  = direction * dashForce
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

@@ -29,6 +29,9 @@ properties/4/replication_mode = 1
 properties/5/path = NodePath("Barbarian:rotation")
 properties/5/spawn = true
 properties/5/replication_mode = 1
+properties/6/path = NodePath("Barbarian/Rig_Medium/AnimationPlayer:current_animation")
+properties/6/spawn = true
+properties/6/replication_mode = 1
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_8vysu"]
 

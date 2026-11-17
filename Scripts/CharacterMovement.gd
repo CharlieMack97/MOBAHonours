@@ -103,7 +103,12 @@ func _input(event):
 		_playAttack.rpc()
 		await get_tree().create_timer(0.4).timeout
 		isAttacking = false
-				
+	if event.is_action_pressed("dashMove"):
+		var result = _mouseToPosRaycast()
+		if result.is_empty():
+			return
+		var hit : Node = result.collider 
+		abilities.dashRPC.rpc(result.position)
 
 #func _animFinished(animName)  -> void:
 	#if animName.is
