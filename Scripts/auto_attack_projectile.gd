@@ -3,7 +3,9 @@ var projectileSpeed : float = 25
 var projectileTarget : CharacterBody3D = null
 var projectileShooter : CharacterBody3D = null
 var turningSpeed : float = 5
-
+const HIT_DISTANCE : float = 0.5
+const AIM_HEIGHT : float = 1.0 
+var damage : float
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -11,22 +13,19 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	if projectileTarget and is_instance_valid(projectileTarget):
-		var direction = (projectileTarget.global_position - global_position).normalized()
-		#var currentDir = -transform.basis.z
-		#var newDir = currentDir.slerp(direction, turningSpeed * delta).normalized()
-		global_position += direction * projectileSpeed * delta
-		#if newDir.length_squared() >0 :
-		look_at(global_position + direction, Vector3.UP)
-	else:
-		removeProjectile.rpc()
-		
-@rpc("any_peer","call_local")
-func removeProjectile():
-	queue_free()
-
-func _on_body_entered(body: Node3D) -> void:
-	var player = body as CharacterBody3D
-	if player == projectileShooter:
+	if !is_instance_valid(projectileTarget):
+		queue_free()
 		return
-	removeProjectile()
+
+	var aimPoint : Vector3 = projectileTarget.global_position + Vector3.UP * AIM_HEIGHT
+	var direction : Vector3 = (aimPoint - global_position).normalized()
+	global_position += direction * projectileSpeed * delta
+	look_at(global_position + direction, Vector3.UP)
+	
+	if global_position.distance_to(aimPoint) <= HIT_DISTANCE:
+		_hitTarget()
+		
+func _hitTarget() -> void:
+	if multiplayer.is_server():
+		AutoAttackProjectile.dealDamage(projectileTarget, damage)
+	queue_free()

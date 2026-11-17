@@ -25,9 +25,14 @@ properties/5/replication_mode = 1
 properties/6/path = NodePath("Knight/AnimationPlayer:current_animation")
 properties/6/spawn = true
 properties/6/replication_mode = 1
+properties/7/path = NodePath(".:team")
+properties/7/spawn = true
+properties/7/replication_mode = 0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8vysu"]
 height = 1.276123
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hlhun"]
 
 [node name="Minion" type="CharacterBody3D" unique_id=345618599]
 script = ExtResource("1_apqf0")
@@ -40,5 +45,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47937012, 0)
 shape = SubResource("CapsuleShape3D_8vysu")
 
 [node name="Knight" parent="." unique_id=715950576 instance=ExtResource("1_t7m1n")]
+
+[node name="Area3D" parent="Knight" index="5" unique_id=1144228758]
+collision_layer = 257
+collision_mask = 257
+
+[node name="TeamRing" type="MeshInstance3D" parent="." unique_id=1418503251]
+transform = Transform3D(1, 0, 0, 0, 0.02389896, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_hlhun")
+
+[connection signal="body_entered" from="Knight/Area3D" to="." method="_on_area_3d_body_entered"]
 
 [editable path="Knight"]

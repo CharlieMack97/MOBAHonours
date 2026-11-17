@@ -146,6 +146,7 @@ spawnPoint = NodePath("Marker3D")
 minionScene = ExtResource("5_q0mm3")
 minionContainer = NodePath("../../MinionSpawner")
 enemyBase = NodePath("../../RedTeamSpawn/Nexus")
+team = 1
 
 [editable path="RedTeamSpawn/Nexus"]
 [editable path="BlueTeamSpawn/Nexus"]

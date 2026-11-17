@@ -12,8 +12,8 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const ATTACK_RANGE = 10
-const ATTACK_DAMAGE = 5
 
+var attackDamage : float = 5.0
 var isMoving : bool = false
 var isAttacking : bool = false
 var targetPoisiton : Vector3 
@@ -62,7 +62,7 @@ func _input(event):
 		if result.has("position"):
 			navAgent.set_target_position(result.position)
 			isMoving = true
-			print("Location in game:", $MeshInstance3D.global_position)
+			#print("Location in game:", $MeshInstance3D.global_position)
 			var lookAtTarget = Vector3(result.position.x, global_position.y,result.position.z)
 			%MeshInstance3D.look_at(lookAtTarget,Vector3.UP)
 			Character.look_at(lookAtTarget,Vector3.UP)
@@ -84,24 +84,26 @@ func _input(event):
 		var hit : Node = result.collider 
 		
 		var player : CharacterBody3D = hit as CharacterBody3D
-		if hit.is_in_group("Player"):
-			#var spawnLocation = $MeshInstance3D.global_position
-			var currentDistance = global_position.distance_to(hit.global_position)
-			if currentDistance <= ATTACK_RANGE : 
-				var lookAtTarget = Vector3(result.position.x, global_position.y,result.position.z)
-				Character.look_at(lookAtTarget,Vector3.UP)
-				Character.rotation.y += PI
-				AutoAttack.autoAttack.rpc_id(1,self.get_path(),player.get_path(),global_position)
-				if isAttacking:
-					return
-				isAttacking = true
-				animPlayer.speed_scale = 3
-				_playAttack.rpc()
-				await get_tree().create_timer(0.4).timeout
-				isAttacking = false
-				
-		else:
+		if !isEnemy(hit):
 			return
+		if isAttacking:
+			return
+		var currentDistance = global_position.distance_to(hit.global_position)
+		if currentDistance > ATTACK_RANGE:
+			return
+
+		var lookAtTarget = Vector3(hit.global_position.x, global_position.y, hit.global_position.z)
+		Character.look_at(lookAtTarget, Vector3.UP)
+		Character.rotation.y += PI
+
+		AutoAttack.autoAttack.rpc_id(1, self.get_path(), hit.get_path(), global_position)
+
+		isAttacking = true
+		animPlayer.speed_scale = 3
+		_playAttack.rpc()
+		await get_tree().create_timer(0.4).timeout
+		isAttacking = false
+				
 
 #func _animFinished(animName)  -> void:
 	#if animName.is
@@ -128,3 +130,5 @@ func _physics_process(delta: float) -> void:
 		if !isAttacking :
 			_playRun.rpc()
 		move_and_slide()
+func isEnemy(body: Node3D) -> bool:
+	return "team" in body and body.team != team
