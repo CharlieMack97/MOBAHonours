@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://cuvkcu480jjdl"]
+
+[ext_resource type="Texture2D" uid="uid://m5q8051sumf0" path="res://icon.svg" id="1_37p78"]
+
+[node name="HUD" type="Control" unique_id=1487132979]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1334024732]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=776349807]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=2135458403]
+layout_mode = 2
+
+[node name="XP" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/VBoxContainer" unique_id=76372629]
+propagate_maximum_size = true
+layout_mode = 2
+size_flags_stretch_ratio = 0.15
+text = "Experience
+"
+fit_content = true
+scroll_active = false
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/VBoxContainer" unique_id=518158537]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.68
+texture = ExtResource("1_37p78")
+
+[node name="Gold" type="RichTextLabel" parent="VBoxContainer/HBoxContainer" unique_id=431326992]
+propagate_maximum_size = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Gold :"
+fit_content = true
+scroll_active = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=225717865]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.36
+
+[node name="SplitContainer" type="SplitContainer" parent="VBoxContainer/HBoxContainer2" unique_id=1326145507]
+layout_mode = 2
+split_offsets = PackedInt32Array(0, 0)
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HBoxContainer2/SplitContainer" unique_id=1670704291]
+layout_mode = 2
+
+[node name="Ability1" type="TextureRect" parent="VBoxContainer/HBoxContainer2/SplitContainer/CenterContainer" unique_id=1519523918]
+layout_mode = 2
+texture = ExtResource("1_37p78")
+
+[node name="CenterContainer2" type="CenterContainer" parent="VBoxContainer/HBoxContainer2/SplitContainer" unique_id=485358505]
+layout_mode = 2
+
+[node name="Ability2" type="TextureRect" parent="VBoxContainer/HBoxContainer2/SplitContainer/CenterContainer2" unique_id=685192637]
+layout_mode = 2
+texture = ExtResource("1_37p78")
+
+[node name="CenterContainer3" type="CenterContainer" parent="VBoxContainer/HBoxContainer2/SplitContainer" unique_id=416688796]
+layout_mode = 2
+
+[node name="Ability3" type="TextureRect" parent="VBoxContainer/HBoxContainer2/SplitContainer/CenterContainer3" unique_id=1368472728]
+layout_mode = 2
+texture = ExtResource("1_37p78")

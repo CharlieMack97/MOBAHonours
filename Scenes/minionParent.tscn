@@ -35,6 +35,8 @@ height = 1.276123
 [sub_resource type="CylinderMesh" id="CylinderMesh_hlhun"]
 
 [node name="Minion" type="CharacterBody3D" unique_id=345618599]
+collision_layer = 16
+collision_mask = 49
 script = ExtResource("1_apqf0")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=804326235]
@@ -47,8 +49,8 @@ shape = SubResource("CapsuleShape3D_8vysu")
 [node name="Knight" parent="." unique_id=715950576 instance=ExtResource("1_t7m1n")]
 
 [node name="Area3D" parent="Knight" index="5" unique_id=1144228758]
-collision_layer = 257
-collision_mask = 257
+collision_layer = 16
+collision_mask = 49
 
 [node name="TeamRing" type="MeshInstance3D" parent="." unique_id=1418503251]
 transform = Transform3D(1, 0, 0, 0, 0.02389896, 0, 0, 0, 1, 0, 0, 0)

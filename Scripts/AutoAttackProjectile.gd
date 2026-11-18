@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 static func dealDamage(target : Node, amount : float) -> void:
 	if !is_instance_valid(target):
 		return
-	var healthComp = target.get_node_or_null("HealthComponent")
+	var healthComp = target.get_node_or_null("HealthCompoenent")
 	if healthComp and healthComp.has_method("takeDamage"):
 		healthComp.takeDamage(amount)
 	elif target.has_method("takeDamage"):

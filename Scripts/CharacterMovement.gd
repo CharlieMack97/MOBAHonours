@@ -16,6 +16,7 @@ const ATTACK_RANGE = 10
 var attackDamage : float = 5.0
 var isMoving : bool = false
 var isAttacking : bool = false
+var isDead : bool = false
 var targetPoisiton : Vector3 
 var attackTarget : Node3D 
 var attackCooldown : int 
@@ -137,3 +138,22 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 func isEnemy(body: Node3D) -> bool:
 	return "team" in body and body.team != team
+
+
+func _on_health_compoenent_died() -> void:
+	print("I died")
+	velocity = Vector3.ZERO
+	isDead = true
+	set_physics_process(false)
+	respawn()
+func respawn() -> void :
+	var GM = get_tree().current_scene.find_child("GameManager")
+	GM.respawnCharacter(self)
+func reset() ->void :
+	await get_tree().create_timer(5.0).timeout
+	isDead = false
+	healthComp.playerHealth = healthComp.MAX_HEALTH
+	healthComp.syncHealth(healthComp.playerHealth)
+	set_physics_process(true)
+	#hud reset here when i have hud
+	

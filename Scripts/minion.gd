@@ -32,18 +32,20 @@ func _ready() -> void:
 	print(name, " ready on team ", team, " | server: ", multiplayer.is_server())
 	_setTeamColour()
 	Health = MAX_HEALTH
+	await get_tree().process_frame
 	updateHealthAnim.rpc(Health)
 func _setTeamColour() -> void:
 	var material := StandardMaterial3D.new()
 	material.albedo_color = TEAM_COLOURS[team]
 	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	teamRing.material_override = material
-func attack(target : CharacterBody3D) -> void :
+func attack(target : Node3D) -> void :
 	velocity = Vector3.ZERO
 	if attackTimer > 0.0:
 		return
 	attackTimer = attackSpeed
 	AutoAttackProjectile.dealDamage(target, ATTACK_DAMAGE)
+	print("Attacking: " ,target)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
@@ -96,21 +98,23 @@ func _AttackEnemy() -> void:
 	move_and_slide()
 	
 func _on_area_3d_body_entered(body: Node3D) -> void:
+	#print("Target: ", body)
 	if !is_multiplayer_authority():
 		return
 	#print(name, " saw ", body.name, " team ", body.get("team"))
 	if enemyTarget != null:
 		return
 	if isEnemy(body):
+		print("Target: ", body)
 		enemyTarget = body
 		state = State.AttackEnemy
 func isEnemy(body: Node3D) -> bool:
-	return "team" in body and body.team != team
+	return body.get("team") != null and  body.team != team
 func takeDamage(amount: float) -> void:
 	if !multiplayer.is_server():
 		return
 	Health -= amount
-	print(name, " health: ", Health)
+	#print(name, " health: ", Health)
 	updateHealthAnim.rpc(Health)
 	if Health <= 0:
 		queue_free() 
@@ -123,4 +127,4 @@ func updateHealthAnim(new_health: float) -> void:
 	var totalFrames = 5
 	var targetFrame = int(healthPercentage * (totalFrames - 1))
 	anim.frame = clampi(targetFrame, 0, totalFrames - 1)
-	print("Updated sprite frame on peer: ", multiplayer.get_unique_id(), " to frame: ", anim.frame)
+	

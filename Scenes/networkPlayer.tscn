@@ -121,15 +121,15 @@ script = ExtResource("2_yk7fa")
 projectile = ExtResource("3_mannh")
 metadata/_custom_type_script = "uid://bes4aerafuqdr"
 
-[node name="HealthCompoenent" type="Node" parent="." unique_id=214204864]
+[node name="HealthCompoenent" type="Node" parent="." unique_id=214204864 groups=["Player"]]
 script = ExtResource("4_q6ql1")
 metadata/_custom_type_script = "uid://dkbu7holbv4un"
 
-[node name="AutoAttackProjectile" type="Node" parent="." unique_id=1175113815]
+[node name="AutoAttackProjectile" type="Node" parent="." unique_id=1175113815 groups=["Player"]]
 script = ExtResource("6_n3lji")
 projectile_scene = ExtResource("7_o21gq")
 
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1142136032]
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1142136032 groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1373372, 0)
 pixel_size = 0.05
 billboard = 1
@@ -137,7 +137,17 @@ texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_qi0go")
 frame = 4
 
-[node name="Barbarian" parent="." unique_id=1279309134 instance=ExtResource("9_xwpa3")]
+[node name="Barbarian" parent="." unique_id=1279309134 groups=["Player"] instance=ExtResource("9_xwpa3")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="Rig_Medium" parent="Barbarian" index="0" unique_id=1873033999 groups=["Player"]]
+
+[node name="AnimationPlayer" parent="Barbarian/Rig_Medium" index="0" unique_id=1410024618 groups=["Player"]]
+
+[node name="AnimationTree" parent="Barbarian/Rig_Medium" index="1" unique_id=1416858791 groups=["Player"]]
+
+[node name="Skeleton3D" parent="Barbarian/Rig_Medium" index="2" unique_id=756966060 groups=["Player"]]
+
+[connection signal="died" from="HealthCompoenent" to="." method="_on_health_compoenent_died"]
 
 [editable path="Barbarian"]

@@ -11,13 +11,14 @@ func _ready() -> void:
 	if not multiplayer.is_server():
 		return
 	multiplayer.peer_connected.connect(_on_peer_connected)
-
+	for n in nexus:
+		n.connect("nexusDead", gameOver)
 func _on_peer_connected(id: int) -> void:
 	clock.syncToPeer(id)
 	if clock.running:
 		return
-	# +1 counts the host; change this if you move to a dedicated server
-	if multiplayer.get_peers().size() + 1 >= playersNeededToStart:
+	
+	if multiplayer.get_peers().size() >= playersNeededToStart:
 		_start_match()
 
 func _start_match() -> void:
@@ -29,3 +30,10 @@ func _on_clock_event(event_name: StringName) -> void:
 		&"minion_wave":
 			for n in nexus:
 				n.spawnWave()
+func respawnCharacter(playerChar : CharacterBody3D) ->void:
+	for n in nexus:
+		if n.team == playerChar.team :
+			playerChar.global_position  = n.spawnPoint.global_position 
+			playerChar.reset()
+func gameOver() ->void:
+	pass

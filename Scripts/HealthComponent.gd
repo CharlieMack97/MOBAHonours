@@ -9,7 +9,7 @@ class_name HealthCompoenent extends Node
 const MAX_HEALTH : float = 100
 const MAX_MANA : float = 300
 const MAX_XP : float = 1000 
-
+signal died
 func _ready() -> void:
 	anim = get_parent().get_node_or_null("AnimatedSprite3D")
 	playerHealth =100
@@ -30,8 +30,11 @@ func syncHealth(health: float) ->void:
 	playerHealth = health
 	print("health updated: ", playerHealth)
 	updateHealthAnim.rpc(playerHealth)
-	if playerHealth <0:
+	if playerHealth <0 && is_in_group("Player"):
+		died.emit()
 		playerHealth = 100
+		
+		
 @rpc("any_peer", "call_local", "reliable")
 func updateHealthAnim(new_health: float) -> void:
 	playerHealth = new_health

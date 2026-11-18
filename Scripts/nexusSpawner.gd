@@ -1,4 +1,5 @@
 extends Node3D
+@onready var anim : AnimatedSprite3D  = $AnimatedSprite3D
 @export var spawnPoint : Marker3D 
 @export var minionScene : PackedScene 
 @export var minionContainer : MultiplayerSpawner 
@@ -11,10 +12,15 @@ const SPAWN_STAGGER := 0.8
 @export var team : int
 const MAXHEALTH : float = 1000
 
+signal nexusDead
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	print(multiplayer.get_unique_id(), " ", get_path())
 	health = MAXHEALTH
 	add_to_group("units")
+	await get_tree().process_frame
+	updateHealthAnim.rpc(health)
+	
 
 func spawnWave() -> void:
 	for i in minionScenesToSpawn:
@@ -28,8 +34,9 @@ func takeDamage(amount: float) -> void:
 	if !multiplayer.is_server():
 		return
 	health -= amount
+	updateHealthAnim.rpc(health)
 	if health <= 0:
-		pass
+		nexusDead.emit()
 		#game over when i have game working
 func _spawnMinionScene() ->void :
 	if not multiplayer.is_server():
@@ -41,5 +48,14 @@ func _spawnMinionScene() ->void :
 	minion.global_position = spawnPoint.global_position
 	minion.moveToPoint = enemyBase.global_position
 	
-	
+@rpc("any_peer", "call_local", "reliable")
+func updateHealthAnim(new_health: float) -> void:
+	health = new_health
+	if not anim:
+		return
+	var healthPercentage = float(health) / float(MAXHEALTH)
+	var totalFrames = 5
+	var targetFrame = int(healthPercentage * (totalFrames - 1))
+	anim.frame = clampi(targetFrame, 0, totalFrames - 1)
+
 	
