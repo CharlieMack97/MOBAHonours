@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://beddmcj8k5r5h" path="res://Scenes/networkPlayer.tscn" id="2_p3ir5"]
 [ext_resource type="PackedScene" uid="uid://do57jcw8120md" path="res://Scenes/NexusSpawner.tscn" id="4_myvm1"]
 [ext_resource type="PackedScene" uid="uid://c5rwb6yc6d3ff" path="res://Scenes/minionParent.tscn" id="5_q0mm3"]
+[ext_resource type="PackedScene" uid="uid://7y6a6we8vllr" path="res://Scenes/end_game.tscn" id="5_w7jjh"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_8vysu"]
 vertices = PackedVector3Array(-9.5, 0.5, -2, -7.25, 0.5, -2.25, -5, 0.5, -5.25, -5, 0.5, -7.75, -49.5, 0.5, 0, -3, 0.5, -49.5, -49.5, 0.5, -49.5, -9.5, 0.5, 0, -3, 0.5, -8, 5.5, 0.5, -7.75, 6.5, 0.5, -8, 6.5, 0.5, -8.25, -0.75, 0.5, -7.75, -0.75, 0.5, -5.25, 1, 0.5, -3.75, 6.5, 0.5, -49.5, 38.5, 0.5, -41.5, 41.25, 0.5, -43.5, 41.25, 0.5, -49.5, 41, 0.5, -38, 38.5, 0.5, -40.5, 42, 0.5, -43.5, 44, 0.5, -40.75, 49.5, 0.5, -40.75, 49.5, 0.5, -49.5, 39.75, 1.5, -41, 41, 1.5, -39.25, 42.75, 1.5, -40.5, 41.5, 1.5, -42.5, 8.25, 0.5, -5.75, 42.25, 0.5, -38.5, 49.5, 0.5, -5.75, -4, 2, -7, -4, 2, -5.75, -1.75, 2, -5.75, -1.75, 2, -7, 0.75, 2, -2.25, 0.75, 2, -1.75, 1.75, 2, -1.25, 7, 2, -5.75, 6, 2, -6.75, 3.25, 0.5, -1, 4, 0.5, 0.75, 7.5, 0.5, 0.75, 7.75, 0.5, -4.75, 7.75, 0.5, 2.5, 49.5, 0.5, 2.5, 3.5, 0.5, 1, 2, 0.5, 0, -7.25, 0.5, 2.25, -5, 0.5, 5.5, -4.75, 0.5, 5, -6.75, 0.5, 2, -1, 0.5, -4.75, -0.5, 0.5, -2.5, -0.75, 0.5, 5.5, 4, 0.5, 4, 3.5, 0.5, 3.75, 1, 0.5, 0, -1, 0.5, 5, -0.5, 0.5, -1.5, -4.75, 0.5, -4.75, -6.75, 0.5, -2, -8.5, 2, -1.25, -8.5, 2, 1.25, -7.75, 2, 1.25, -7.75, 2, -1.25, -9.5, 0.5, 2, -5, 0.5, 8, -39.75, 0.5, 36.25, -38.75, 0.5, 36.25, -49.5, 0.5, 38.75, -42, 0.5, 38.75, -40.75, 0.5, 37, -4.5, 0.5, 8.25, 4.5, 2, 1.75, 4.5, 2, 3, 6.75, 2, 3, 6.75, 2, 1.75, -0.75, 0.5, 8, 7.5, 0.5, 4, -2.25, 0.5, 49.5, 49.5, 0.5, 49.5, -2.5, 0.5, 8.25, -4, 2, 6, -4, 2, 7.25, -1.75, 2, 7.25, -1.75, 2, 6, -36.5, 0.5, 39.5, -39.25, 0.5, 41.5, -39.25, 0.5, 49.5, -3.5, 0.5, 49.5, -36.75, 0.5, 38.25, -3.25, 0.5, 8.25, -40.75, 1.5, 38.5, -39.5, 1.5, 40.5, -37.75, 1.5, 39.25, -39, 1.5, 37.25, -40, 0.5, 41.5, -41.25, 0.5, 40.25, -49.5, 0.5, 49.5)
@@ -107,6 +108,9 @@ collision_layer = 2
 collision_mask = 13
 size = Vector3(3, 2, 2)
 
+[node name="EndGame" parent="." unique_id=438144179 instance=ExtResource("5_w7jjh")]
+visible = false
+
 [node name="Projectiles" type="Node" parent="." unique_id=800696448]
 unique_name_in_owner = true
 
@@ -137,16 +141,6 @@ minionScene = ExtResource("5_q0mm3")
 minionContainer = NodePath("../../MinionSpawner")
 enemyBase = NodePath("../../BlueTeamSpawn/Nexus")
 
-[node name="CSGBox3D" parent="RedTeamSpawn/Nexus" index="0" unique_id=532488241 groups=["Structure"]]
-
-[node name="Marker3D" parent="RedTeamSpawn/Nexus" index="1" unique_id=1066976387 groups=["Structure"]]
-
-[node name="AnimatedSprite3D" parent="RedTeamSpawn/Nexus" index="2" unique_id=936506719 groups=["Structure"]]
-
-[node name="Area3D" parent="RedTeamSpawn/Nexus" index="3" unique_id=2054760743 groups=["Structure"]]
-
-[node name="CollisionShape3D" parent="RedTeamSpawn/Nexus/Area3D" index="0" unique_id=1271265774 groups=["Structure"]]
-
 [node name="BlueTeamSpawn" type="Marker3D" parent="." unique_id=1723071291]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 0, -37)
 
@@ -157,16 +151,6 @@ minionScene = ExtResource("5_q0mm3")
 minionContainer = NodePath("../../MinionSpawner")
 enemyBase = NodePath("../../RedTeamSpawn/Nexus")
 team = 1
-
-[node name="CSGBox3D" parent="BlueTeamSpawn/Nexus" index="0" unique_id=532488241 groups=["Structure"]]
-
-[node name="Marker3D" parent="BlueTeamSpawn/Nexus" index="1" unique_id=1066976387 groups=["Structure"]]
-
-[node name="AnimatedSprite3D" parent="BlueTeamSpawn/Nexus" index="2" unique_id=936506719 groups=["Structure"]]
-
-[node name="Area3D" parent="BlueTeamSpawn/Nexus" index="3" unique_id=2054760743 groups=["Structure"]]
-
-[node name="CollisionShape3D" parent="BlueTeamSpawn/Nexus/Area3D" index="0" unique_id=1271265774 groups=["Structure"]]
 
 [editable path="RedTeamSpawn/Nexus"]
 [editable path="BlueTeamSpawn/Nexus"]

@@ -10,7 +10,7 @@ var minionScenesToSpawn : int = 4
 @export var enemyBase : Node3D 
 const SPAWN_STAGGER := 0.8
 @export var team : int
-const MAXHEALTH : float = 1000
+const MAXHEALTH : float = 100
 @export var hitRadius : float = 3.0
 signal nexusDead
 # Called when the node enters the scene tree for the first time.

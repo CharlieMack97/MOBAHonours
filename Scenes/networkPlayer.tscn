@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cuepteywjy13h" path="res://Scripts/CharacterMovement.gd" id="1_0y7nr"]
 [ext_resource type="Texture2D" uid="uid://m5q8051sumf0" path="res://icon.svg" id="2_icota"]
+[ext_resource type="PackedScene" uid="uid://cuvkcu480jjdl" path="res://Scenes/hud.tscn" id="2_tw1gc"]
 [ext_resource type="Script" uid="uid://bes4aerafuqdr" path="res://Scripts/Abilities.gd" id="2_yk7fa"]
 [ext_resource type="PackedScene" uid="uid://dsd338n1tkrp0" path="res://Scenes/Projectile.tscn" id="3_mannh"]
 [ext_resource type="Script" uid="uid://dkbu7holbv4un" path="res://Scripts/HealthComponent.gd" id="4_q6ql1"]
@@ -85,11 +86,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="CharacterBody3D" type="CharacterBody3D" unique_id=1194078696 groups=["Player"]]
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=1194078696 node_paths=PackedStringArray("HUD") groups=["Player"]]
 disable_mode = 2
 collision_mask = 257
 safe_margin = 0.076
 script = ExtResource("1_0y7nr")
+HUD = NodePath("HUD")
+
+[node name="HUD" parent="." unique_id=1487132979 instance=ExtResource("2_tw1gc")]
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1915612773 groups=["Player"]]
 replication_config = SubResource("SceneReplicationConfig_jo2ib")
@@ -150,4 +154,5 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0
 
 [connection signal="died" from="HealthCompoenent" to="." method="_on_health_compoenent_died"]
 
+[editable path="HUD"]
 [editable path="Barbarian"]

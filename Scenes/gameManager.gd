@@ -12,7 +12,7 @@ func _ready() -> void:
 		return
 	multiplayer.peer_connected.connect(_on_peer_connected)
 	for n in nexus:
-		n.connect("nexusDead", gameOver)
+		n.connect("nexusDead", _gameOver)
 func _on_peer_connected(id: int) -> void:
 	clock.syncToPeer(id)
 	if clock.running:
@@ -35,5 +35,10 @@ func respawnCharacter(playerChar : CharacterBody3D) ->void:
 		if n.team == playerChar.team :
 			playerChar.global_position  = n.spawnPoint.global_position 
 			playerChar.reset()
-func gameOver() ->void:
-	pass
+func _gameOver() -> void:
+	gameOver.rpc(1)
+@rpc("authority", "call_local", "reliable")
+func gameOver(winning_team: int) ->void:
+	$"../EndGame".show()
+	get_tree().paused = true
+	multiplayer.multiplayer_peer.close()

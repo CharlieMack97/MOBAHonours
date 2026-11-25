@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cuvkcu480jjdl"]
 
-[ext_resource type="Texture2D" uid="uid://m5q8051sumf0" path="res://icon.svg" id="1_37p78"]
+[ext_resource type="Texture2D" uid="uid://m5q8051sumf0" path="res://icon.svg" id="1_e0onf"]
 
 [node name="HUD" type="Control" unique_id=1487132979]
 layout_mode = 3
@@ -10,7 +10,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Colouring" type="ColorRect" parent="." unique_id=960595202]
+visible = false
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.52345234, 0.08959874, 1.92523e-07, 0.4117647)
+
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1334024732]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,7 +51,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.68
-texture = ExtResource("1_37p78")
+texture = ExtResource("1_e0onf")
 
 [node name="Gold" type="RichTextLabel" parent="VBoxContainer/HBoxContainer" unique_id=431326992]
 propagate_maximum_size = true
@@ -63,18 +75,18 @@ layout_mode = 2
 
 [node name="Ability1" type="TextureRect" parent="VBoxContainer/HBoxContainer2/SplitContainer/CenterContainer" unique_id=1519523918]
 layout_mode = 2
-texture = ExtResource("1_37p78")
+texture = ExtResource("1_e0onf")
 
 [node name="CenterContainer2" type="CenterContainer" parent="VBoxContainer/HBoxContainer2/SplitContainer" unique_id=485358505]
 layout_mode = 2
 
 [node name="Ability2" type="TextureRect" parent="VBoxContainer/HBoxContainer2/SplitContainer/CenterContainer2" unique_id=685192637]
 layout_mode = 2
-texture = ExtResource("1_37p78")
+texture = ExtResource("1_e0onf")
 
 [node name="CenterContainer3" type="CenterContainer" parent="VBoxContainer/HBoxContainer2/SplitContainer" unique_id=416688796]
 layout_mode = 2
 
 [node name="Ability3" type="TextureRect" parent="VBoxContainer/HBoxContainer2/SplitContainer/CenterContainer3" unique_id=1368472728]
 layout_mode = 2
-texture = ExtResource("1_37p78")
+texture = ExtResource("1_e0onf")

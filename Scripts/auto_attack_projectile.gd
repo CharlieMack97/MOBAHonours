@@ -1,6 +1,6 @@
 extends Area3D
 var projectileSpeed : float = 25
-var projectileTarget : CharacterBody3D = null
+var projectileTarget : Node3D = null
 var projectileShooter : CharacterBody3D = null
 var turningSpeed : float = 5
 const HIT_DISTANCE : float = 0.5

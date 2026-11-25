@@ -9,6 +9,7 @@ extends CharacterBody3D
 @onready var animPlayer : AnimationPlayer = $Barbarian.find_child("AnimationPlayer", true, false)
 @onready var animTree : AnimationTree = $Barbarian.find_child("AnimationTree", true, false)
 @onready var stateMachine : AnimationNodeStateMachinePlayback
+@export var HUD : Node
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const ATTACK_RANGE = 10
@@ -141,7 +142,11 @@ func isEnemy(body: Node3D) -> bool:
 
 
 func _on_health_compoenent_died() -> void:
+	
+	if not is_multiplayer_authority():
+		return
 	print("I died")
+	HUD.get_node("Colouring").show()
 	velocity = Vector3.ZERO
 	isDead = true
 	set_physics_process(false)
@@ -154,6 +159,7 @@ func reset() ->void :
 	isDead = false
 	healthComp.playerHealth = healthComp.MAX_HEALTH
 	healthComp.syncHealth(healthComp.playerHealth)
+	HUD.get_node("Colouring").hide()
 	set_physics_process(true)
 	#hud reset here when i have hud
 	
