@@ -19,17 +19,15 @@ properties/2/spawn = true
 properties/2/replication_mode = 1
 
 [node name="Projectile" type="Area3D" unique_id=467706925 groups=["Projectile"]]
-transform = Transform3D(-1.0927847e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.0927847e-08, 0, 0, 0)
+transform = Transform3D(-2.2074252e-08, 0, 0.505, 0, 0.505, 0, -0.505, 0, -2.2074252e-08, 0, 0, 0)
 disable_mode = 2
 collision_layer = 8
-collision_mask = 15
+collision_mask = 63
 script = ExtResource("1_lal66")
 projectileSpeed = 2.0
-projectileDirection = null
-projectilesSpawn = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=763481863 groups=["Projectile"]]
-transform = Transform3D(-8.742278e-08, 2, 0, -2, -8.742278e-08, 0, 0, 0, 2, 0, 0, 0)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_lal66")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1296840603 groups=["Projectile"]]

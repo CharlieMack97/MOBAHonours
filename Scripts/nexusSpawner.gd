@@ -11,13 +11,13 @@ var minionScenesToSpawn : int = 4
 const SPAWN_STAGGER := 0.8
 @export var team : int
 const MAXHEALTH : float = 1000
-
+@export var hitRadius : float = 3.0
 signal nexusDead
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print(multiplayer.get_unique_id(), " ", get_path())
 	health = MAXHEALTH
-	add_to_group("units")
+	add_to_group("structures")
 	await get_tree().process_frame
 	updateHealthAnim.rpc(health)
 	
@@ -30,7 +30,7 @@ func spawnWave() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	pass
-func takeDamage(amount: float) -> void:
+func takeDamage(amount: float, attacker: Node3D = null) -> void:
 	if !multiplayer.is_server():
 		return
 	health -= amount

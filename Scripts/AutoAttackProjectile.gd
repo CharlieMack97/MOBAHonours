@@ -32,7 +32,7 @@ func autoAttackSpawn(player : NodePath, enemy : NodePath, spawnPos : Vector3) ->
 func _physics_process(delta: float) -> void:
 	if not multiplayer.is_server():
 		return
-static func dealDamage(target : Node, amount : float) -> void:
+static func dealDamage(target : Node, amount : float,attacker: Node3D = null) -> void:
 	if !is_instance_valid(target):
 		return
 	var healthComp = target.get_node_or_null("HealthCompoenent")

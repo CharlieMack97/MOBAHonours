@@ -131,22 +131,42 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014980793, 0.5674776, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 0, 37)
 
 [node name="Nexus" parent="RedTeamSpawn" unique_id=809270123 node_paths=PackedStringArray("spawnPoint", "minionContainer", "enemyBase") instance=ExtResource("4_myvm1")]
-transform = Transform3D(-0.6312912, 0, 0.7755459, 0, 1, 0, -0.7755459, 0, -0.6312912, -2.3079197, 0.5029545, 1.8786373)
+transform = Transform3D(-0.969032, 0, 1.190463, 0, 1.535, 0, -1.190463, 0, -0.969032, -2.3079185, 1.0674686, 1.8786392)
 spawnPoint = NodePath("Marker3D")
 minionScene = ExtResource("5_q0mm3")
 minionContainer = NodePath("../../MinionSpawner")
 enemyBase = NodePath("../../BlueTeamSpawn/Nexus")
 
+[node name="CSGBox3D" parent="RedTeamSpawn/Nexus" index="0" unique_id=532488241 groups=["Structure"]]
+
+[node name="Marker3D" parent="RedTeamSpawn/Nexus" index="1" unique_id=1066976387 groups=["Structure"]]
+
+[node name="AnimatedSprite3D" parent="RedTeamSpawn/Nexus" index="2" unique_id=936506719 groups=["Structure"]]
+
+[node name="Area3D" parent="RedTeamSpawn/Nexus" index="3" unique_id=2054760743 groups=["Structure"]]
+
+[node name="CollisionShape3D" parent="RedTeamSpawn/Nexus/Area3D" index="0" unique_id=1271265774 groups=["Structure"]]
+
 [node name="BlueTeamSpawn" type="Marker3D" parent="." unique_id=1723071291]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 0, -37)
 
 [node name="Nexus" parent="BlueTeamSpawn" unique_id=1063700414 node_paths=PackedStringArray("spawnPoint", "minionContainer", "enemyBase") instance=ExtResource("4_myvm1")]
-transform = Transform3D(0.668174, 0, -0.744005, 0, 1, 0, 0.744005, 0, 0.668174, 4.277527, 0.6357236, -3.8237572)
+transform = Transform3D(1.0256472, 0, -1.1420476, 0, 1.535, 0, 1.1420476, 0, 1.0256472, 4.277527, 1.2002378, -3.8237572)
 spawnPoint = NodePath("Marker3D")
 minionScene = ExtResource("5_q0mm3")
 minionContainer = NodePath("../../MinionSpawner")
 enemyBase = NodePath("../../RedTeamSpawn/Nexus")
 team = 1
+
+[node name="CSGBox3D" parent="BlueTeamSpawn/Nexus" index="0" unique_id=532488241 groups=["Structure"]]
+
+[node name="Marker3D" parent="BlueTeamSpawn/Nexus" index="1" unique_id=1066976387 groups=["Structure"]]
+
+[node name="AnimatedSprite3D" parent="BlueTeamSpawn/Nexus" index="2" unique_id=936506719 groups=["Structure"]]
+
+[node name="Area3D" parent="BlueTeamSpawn/Nexus" index="3" unique_id=2054760743 groups=["Structure"]]
+
+[node name="CollisionShape3D" parent="BlueTeamSpawn/Nexus/Area3D" index="0" unique_id=1271265774 groups=["Structure"]]
 
 [editable path="RedTeamSpawn/Nexus"]
 [editable path="BlueTeamSpawn/Nexus"]

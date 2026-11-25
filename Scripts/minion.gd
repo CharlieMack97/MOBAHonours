@@ -20,7 +20,9 @@ var Health : float
 const MAX_HEALTH : float = 10
 const TEAM_COLOURS : Array[Color] = [Color.DODGER_BLUE, Color.RED]
 const ATTACK_DAMAGE : float = 5.0
+const LEASH_RANGE : float = 8.0
 var attackTimer : float = 0.0
+var retaliating : bool = false
 
 enum State{
 	MoveToPoint,
@@ -44,7 +46,7 @@ func attack(target : Node3D) -> void :
 	if attackTimer > 0.0:
 		return
 	attackTimer = attackSpeed
-	AutoAttackProjectile.dealDamage(target, ATTACK_DAMAGE)
+	AutoAttackProjectile.dealDamage(target, ATTACK_DAMAGE, self)
 	print("Attacking: " ,target)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -73,19 +75,27 @@ func _moveToPoint() -> void :
 	velocity.z = direction.z * speed
 	
 	move_and_slide()
+func _edgeDistance(target: Node3D) -> float:
+	var toTarget : Vector3 = target.global_position - global_position
+	toTarget.y = 0.0
+	var targetRadius : float = target.get("hitRadius") if target.get("hitRadius") != null else 0.0
+	return toTarget.length() - targetRadius
 func _AttackEnemy() -> void:
-	if !is_instance_valid(enemyTarget):
+	if !is_instance_valid(enemyTarget) or _edgeDistance(enemyTarget) > LEASH_RANGE:
 		enemyTarget = null
 		state = State.MoveToPoint
 		for body in aggroArea.get_overlapping_bodies():
-			if isEnemy(body):
+			if isEnemy(body) and _edgeDistance(body) <= LEASH_RANGE:
 				enemyTarget = body
 				state = State.AttackEnemy
 				break
 		return
 	navAgent.target_position = enemyTarget.global_position
-	var dist = global_position.distance_to(enemyTarget.global_position )
 	
+	var toTarget : Vector3 = enemyTarget.global_position - global_position
+	toTarget.y = 0.0
+	var targetRadius : float = enemyTarget.get("hitRadius") if enemyTarget.get("hitRadius") != null else 0.0
+	var dist = global_position.distance_to(enemyTarget.global_position ) - targetRadius
 	if dist < 2.0:
 		attack(enemyTarget)
 		return
@@ -104,13 +114,14 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	#print(name, " saw ", body.name, " team ", body.get("team"))
 	if enemyTarget != null:
 		return
-	if isEnemy(body):
-		print("Target: ", body)
-		enemyTarget = body
+	var unit := getUnit(body)
+	if unit and isEnemy(unit):
+		print("Target: ", unit)
+		enemyTarget = unit
 		state = State.AttackEnemy
 func isEnemy(body: Node3D) -> bool:
 	return body.get("team") != null and  body.team != team
-func takeDamage(amount: float) -> void:
+func takeDamage(amount: float,attacker: Node3D = null) -> void:
 	if !multiplayer.is_server():
 		return
 	Health -= amount
@@ -118,6 +129,13 @@ func takeDamage(amount: float) -> void:
 	updateHealthAnim.rpc(Health)
 	if Health <= 0:
 		queue_free() 
+		return
+	if retaliating and is_instance_valid(enemyTarget):
+		return
+	if is_instance_valid(attacker) and attacker != enemyTarget and isEnemy(attacker):
+		enemyTarget = attacker
+		state = State.AttackEnemy
+		retaliating = true
 @rpc("any_peer", "call_local", "reliable")
 func updateHealthAnim(new_health: float) -> void:
 	Health = new_health
@@ -127,4 +145,10 @@ func updateHealthAnim(new_health: float) -> void:
 	var totalFrames = 5
 	var targetFrame = int(healthPercentage * (totalFrames - 1))
 	anim.frame = clampi(targetFrame, 0, totalFrames - 1)
-	
+func getUnit(body: Node3D) -> Node3D:
+	if body.get("team") != null:
+		return body
+	var parent := body.get_parent()
+	if parent is Node3D and parent.get("team") != null:
+		return parent
+	return null

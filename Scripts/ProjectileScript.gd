@@ -22,20 +22,30 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if not multiplayer.is_server():
 		return
-	print("server detected hit entered: ", body.name, " | Groups: ", body.get_groups())
-	#if body.is_in_group("Player") :
-		#queue_free()
-	#if body.is_in_group("Player")&& body!= Shooter :
-		#queue_free() 
 	if body == shooter:
 		return
+	
+	var shooterTeam = shooter.get("team") if is_instance_valid(shooter) else null
+	var bodyTeam = body.get("team")
+	if shooterTeam != null and bodyTeam != null and bodyTeam == shooterTeam:
+		return 
+	
+	if body.is_in_group("structures"):
+		removeProjectile.rpc()
+		return
+	
 	var healthComp = body.get_node_or_null("HealthCompoenent")
-	if healthComp and healthComp.has_method("takeDamage") :
+	if healthComp and healthComp.has_method("takeDamage"):
 		healthComp.takeDamage(20)
 		removeProjectile.rpc()
-	if body.is_in_group("Terrain") :
+		return
+	
+	if body.has_method("takeDamage"):
+		body.takeDamage(20, shooter if is_instance_valid(shooter) else null)
 		removeProjectile.rpc()
-	if body.get_collision_layer_value(2):
+		return
+	
+	if body.is_in_group("Terrain") or body.get_collision_layer_value(2):
 		removeProjectile.rpc()
 @rpc("call_local")
 func removeProjectile():
